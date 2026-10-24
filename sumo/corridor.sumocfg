@@ -1,0 +1,17 @@
+<configuration>
+    <input>
+        <net-file value="corridor_fixed.net.xml"/>
+        <route-files value="routes_medium.rou.xml"/>
+        <additional-files value="detectors.add.xml,cameras.add.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="2400"/>
+    </time>
+    <processing>
+        <time-to-teleport value="300"/>
+    </processing>
+    <random_number>
+        <seed value="42"/>
+    </random_number>
+</configuration>

@@ -1,0 +1,38 @@
+<additional>
+  <laneAreaDetector id="e2_J2_J1_0" lane="J2_J1_0" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J2_J1_0" lane="J2_J1_0" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_J2_J1_1" lane="J2_J1_1" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J2_J1_1" lane="J2_J1_1" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_N1_J1_0" lane="N1_J1_0" pos="159.6" endPos="239.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_N1_J1_0" lane="N1_J1_0" pos="209.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_S1_J1_0" lane="S1_J1_0" pos="159.6" endPos="239.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_S1_J1_0" lane="S1_J1_0" pos="209.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_W_J1_0" lane="W_J1_0" pos="312.8" endPos="392.3" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_W_J1_0" lane="W_J1_0" pos="362.8" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_W_J1_1" lane="W_J1_1" pos="312.8" endPos="392.3" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_W_J1_1" lane="W_J1_1" pos="362.8" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_J1_J2_0" lane="J1_J2_0" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J1_J2_0" lane="J1_J2_0" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_J1_J2_1" lane="J1_J2_1" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J1_J2_1" lane="J1_J2_1" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_J3_J2_0" lane="J3_J2_0" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J3_J2_0" lane="J3_J2_0" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_J3_J2_1" lane="J3_J2_1" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J3_J2_1" lane="J3_J2_1" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_N2_J2_0" lane="N2_J2_0" pos="159.6" endPos="239.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_N2_J2_0" lane="N2_J2_0" pos="209.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_S2_J2_0" lane="S2_J2_0" pos="159.6" endPos="239.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_S2_J2_0" lane="S2_J2_0" pos="209.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_E_J3_0" lane="E_J3_0" pos="312.8" endPos="392.3" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_E_J3_0" lane="E_J3_0" pos="362.8" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_E_J3_1" lane="E_J3_1" pos="312.8" endPos="392.3" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_E_J3_1" lane="E_J3_1" pos="362.8" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_J2_J3_0" lane="J2_J3_0" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J2_J3_0" lane="J2_J3_0" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_J2_J3_1" lane="J2_J3_1" pos="205.6" endPos="285.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_J2_J3_1" lane="J2_J3_1" pos="255.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_N3_J3_0" lane="N3_J3_0" pos="159.6" endPos="239.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_N3_J3_0" lane="N3_J3_0" pos="209.6" period="300" file="out/e1_counts.xml"/>
+  <laneAreaDetector id="e2_S3_J3_0" lane="S3_J3_0" pos="159.6" endPos="239.1" period="60" file="out/e2.xml"/>
+  <inductionLoop id="e1_S3_J3_0" lane="S3_J3_0" pos="209.6" period="300" file="out/e1_counts.xml"/>
+</additional>
