@@ -1,0 +1,162 @@
+{
+ "before": [
+  {
+   "loop": "E_J3",
+   "model": 954,
+   "field": 954,
+   "geh": 0.0
+  },
+  {
+   "loop": "J1_J2",
+   "model": 960,
+   "field": 933,
+   "geh": 0.88
+  },
+  {
+   "loop": "J2_J1",
+   "model": 855,
+   "field": 915,
+   "geh": 2.02
+  },
+  {
+   "loop": "J2_J3",
+   "model": 897,
+   "field": 873,
+   "geh": 0.81
+  },
+  {
+   "loop": "J3_J2",
+   "model": 909,
+   "field": 975,
+   "geh": 2.15
+  },
+  {
+   "loop": "N1_J1",
+   "model": 198,
+   "field": 279,
+   "geh": 5.24
+  },
+  {
+   "loop": "N2_J2",
+   "model": 297,
+   "field": 417,
+   "geh": 6.35
+  },
+  {
+   "loop": "N3_J3",
+   "model": 297,
+   "field": 417,
+   "geh": 6.35
+  },
+  {
+   "loop": "S1_J1",
+   "model": 297,
+   "field": 417,
+   "geh": 6.35
+  },
+  {
+   "loop": "S2_J2",
+   "model": 249,
+   "field": 348,
+   "geh": 5.73
+  },
+  {
+   "loop": "S3_J3",
+   "model": 198,
+   "field": 279,
+   "geh": 5.24
+  },
+  {
+   "loop": "W_J1",
+   "model": 993,
+   "field": 933,
+   "geh": 1.93
+  }
+ ],
+ "after": [
+  {
+   "loop": "E_J3",
+   "model": 945,
+   "field": 954,
+   "geh": 0.29
+  },
+  {
+   "loop": "J1_J2",
+   "model": 963,
+   "field": 933,
+   "geh": 0.97
+  },
+  {
+   "loop": "J2_J1",
+   "model": 885,
+   "field": 915,
+   "geh": 1.0
+  },
+  {
+   "loop": "J2_J3",
+   "model": 900,
+   "field": 873,
+   "geh": 0.91
+  },
+  {
+   "loop": "J3_J2",
+   "model": 936,
+   "field": 975,
+   "geh": 1.26
+  },
+  {
+   "loop": "N1_J1",
+   "model": 282,
+   "field": 279,
+   "geh": 0.18
+  },
+  {
+   "loop": "N2_J2",
+   "model": 420,
+   "field": 417,
+   "geh": 0.15
+  },
+  {
+   "loop": "N3_J3",
+   "model": 420,
+   "field": 417,
+   "geh": 0.15
+  },
+  {
+   "loop": "S1_J1",
+   "model": 420,
+   "field": 417,
+   "geh": 0.15
+  },
+  {
+   "loop": "S2_J2",
+   "model": 348,
+   "field": 348,
+   "geh": 0.0
+  },
+  {
+   "loop": "S3_J3",
+   "model": 282,
+   "field": 279,
+   "geh": 0.18
+  },
+  {
+   "loop": "W_J1",
+   "model": 948,
+   "field": 933,
+   "geh": 0.49
+  }
+ ],
+ "pass_before": 50,
+ "pass_after": 100,
+ "factors": {
+  "W_J1": 0.94,
+  "E_J3": 1.0,
+  "N1_J1": 1.409,
+  "S1_J1": 1.404,
+  "N2_J2": 1.404,
+  "S2_J2": 1.398,
+  "N3_J3": 1.404,
+  "S3_J3": 1.409
+ }
+}

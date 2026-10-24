@@ -1,0 +1,182 @@
+[
+ {
+  "controller": "fixed",
+  "demand": "low",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 45.2,
+  "time_loss_min": 44.5,
+  "time_loss_max": 45.6,
+  "stops_mean": 1.21
+ },
+ {
+  "controller": "actuated",
+  "demand": "low",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 15.6,
+  "time_loss_min": 14.8,
+  "time_loss_max": 16.3,
+  "stops_mean": 0.88
+ },
+ {
+  "controller": "twin",
+  "demand": "low",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 17.5,
+  "time_loss_min": 16.7,
+  "time_loss_max": 18.3,
+  "stops_mean": 0.57
+ },
+ {
+  "controller": "twin_camera",
+  "demand": "low",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 20.1,
+  "time_loss_min": 19.2,
+  "time_loss_max": 20.9,
+  "stops_mean": 0.79
+ },
+ {
+  "controller": "fixed",
+  "demand": "medium",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 136.4,
+  "time_loss_min": 135.3,
+  "time_loss_max": 137.7,
+  "stops_mean": 3.48
+ },
+ {
+  "controller": "actuated",
+  "demand": "medium",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 35.0,
+  "time_loss_min": 32.5,
+  "time_loss_max": 38.7,
+  "stops_mean": 1.53
+ },
+ {
+  "controller": "twin",
+  "demand": "medium",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 39.4,
+  "time_loss_min": 37.4,
+  "time_loss_max": 41.3,
+  "stops_mean": 1.2
+ },
+ {
+  "controller": "twin_camera",
+  "demand": "medium",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 38.7,
+  "time_loss_min": 37.0,
+  "time_loss_max": 39.9,
+  "stops_mean": 1.38
+ },
+ {
+  "controller": "fixed",
+  "demand": "high",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 198.3,
+  "time_loss_min": 196.8,
+  "time_loss_max": 200.4,
+  "stops_mean": 4.34
+ },
+ {
+  "controller": "actuated",
+  "demand": "high",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 101.0,
+  "time_loss_min": 97.1,
+  "time_loss_max": 104.4,
+  "stops_mean": 3.4
+ },
+ {
+  "controller": "twin",
+  "demand": "high",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 96.1,
+  "time_loss_min": 93.1,
+  "time_loss_max": 98.1,
+  "stops_mean": 2.73
+ },
+ {
+  "controller": "twin_camera",
+  "demand": "high",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "time_loss_mean": 94.7,
+  "time_loss_min": 88.5,
+  "time_loss_max": 100.5,
+  "stops_mean": 2.91
+ }
+]
