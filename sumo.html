@@ -59,7 +59,7 @@ ol.steps h4{color:var(--ink)}
 </section>
 
 <section class="blk" id="replay">
-  <div class="blk-head"><span class="eyebrow">Replay</span><h2>Watch the corridor</h2><p>Ten minutes of the morning peak (simulation time 10:00 to 20:00) at medium demand. Each dot is a vehicle, coloured by speed. Bars at the stop lines show the signal. Switch controllers to see the same traffic handled four ways.</p></div>
+  <div class="blk-head"><span class="eyebrow">Replay</span><h2>Watch the corridor</h2><p>Ten minutes of the peak (simulation minutes 10 to 20) at medium demand. Each dot is a vehicle, coloured by speed. Bars at the stop lines show the signal. Switch controllers to see the same traffic handled four ways.</p></div>
   <div class="panel viewer">
     <div class="vbar">
       <div class="seg" id="ctrlSeg" role="group" aria-label="Controller"></div>
@@ -212,9 +212,11 @@ $("#scrub").oninput=e=>{frame=+e.target.value;drawFrame();};
 $("#play").onclick=()=>{playing=!playing;$("#play").textContent=playing?"Pause":"Play";if(playing){last=performance.now();raf=requestAnimationFrame(loop);}};
 function loop(now){ if(!playing)return; const dt=(now-last)/1000; last=now; frame+=dt*speed; if(frame>=599)frame=0; $("#scrub").value=Math.floor(frame); drawFrame(); raf=requestAnimationFrame(loop); }
 
-function fit(cv,bounds,pad){
-  const W=cv.clientWidth, H=+cv.getAttribute("height"), dpr=window.devicePixelRatio||1;
-  if(cv.width!==Math.round(W*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);}
+function fit(cv,bounds,pad,hFix){
+  if(!cv.dataset.h)cv.dataset.h=cv.getAttribute("height");
+  const W=cv.clientWidth, H=hFix?Math.round(hFix(W)):+cv.dataset.h, dpr=window.devicePixelRatio||1;
+  cv.style.height=H+"px";
+  if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);}
   const ctx=cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
   const [x0,y0,x1,y1]=bounds, s=Math.min((W-2*pad)/(x1-x0),(H-2*pad)/(y1-y0));
   const ox=(W-(x1-x0)*s)/2, oy=(H-(y1-y0)*s)/2;
@@ -224,7 +226,7 @@ function drawRoads(T,ink){
   const {ctx,s,X,Y}=T;
   ctx.fillStyle=css("--line"); for(const j of NET.junctions){ctx.beginPath();j.s.forEach((p,i)=>i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1])));ctx.closePath();ctx.fill();}
   ctx.strokeStyle=css("--surface"); ctx.lineCap="butt";
-  for(const l of NET.lanes){ if(l.internal)continue; ctx.lineWidth=Math.max(1,l.w*s); ctx.beginPath(); l.s.forEach((p,i)=>i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1]))); ctx.stroke(); }
+  for(const l of NET.lanes){ if(l.internal)continue; ctx.lineWidth=Math.max(2.5,l.w*s); ctx.beginPath(); l.s.forEach((p,i)=>i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1]))); ctx.stroke(); }
 }
 function sigColor(ch){return ch==="G"||ch==="g"?css("--good"):ch==="y"||ch==="Y"?css("--sign"):css("--bad")}
 function vehColor(v){return v>=8?css("--good"):v>=2?css("--sign"):css("--bad")}
@@ -233,8 +235,8 @@ function drawFrame(){
   const f=Math.min(599,Math.floor(frame)), fr=R.frames[f]||[], sg=R.signals[f]||[];
   $("#clock").textContent=`t = ${R.window[0]+f} s`;
   const b=NET.bounds, j2=NET.cameras[1];
-  const bounds=view==="all"?[b[0],b[1]+130,b[2],b[3]-130]:[j2.x-132,j2.y-82,j2.x+108,j2.y+58];
-  const T=fit($("#map"),bounds,10); const {ctx,s,X,Y}=T;
+  const bounds=view==="all"?[b[0],b[1]+20,b[2],b[3]-20]:[j2.x-132,j2.y-82,j2.x+108,j2.y+58];
+  const T=fit($("#map"),bounds,10,view==="all"?(W=>Math.max(170,W*(b[3]-b[1]-40)/(b[2]-b[0])+20)):(W=>Math.min(380,Math.max(240,W*0.55)))); const {ctx,s,X,Y}=T;
   drawRoads(T);
   // signals
   ["J1","J2","J3"].forEach((j,k)=>{const st=sg[k]||""; NET.stops[j].forEach((p,i)=>{ctx.fillStyle=sigColor(st[i]); const r=Math.max(2,1.6*s); ctx.fillRect(X(p[0])-r,Y(p[1])-r,2*r,2*r);});});
@@ -259,8 +261,8 @@ function drawCam(R,f,fr){
   if(ctrl==="twin_camera"&&R.camera){
     const dets=R.camera[f]||[]; let missed=0;
     for(const t of inRange){ if(!dets.some(d=>Math.hypot(d[0]-t[0],d[1]-t[1])<3.5)){missed++; ctx.strokeStyle=css("--bad"); ctx.setLineDash([2,2]); ctx.lineWidth=1.2; ctx.beginPath(); ctx.arc(X(t[0]),Y(t[1]),3.2*s,0,7); ctx.stroke(); ctx.setLineDash([]);} }
-    ctx.lineWidth=1.6; ctx.font="600 10px "+css("--f-mono");
-    for(const d of dets){ const w=6*s,h=4*s; ctx.strokeStyle=css("--c-cam"); ctx.strokeRect(X(d[0])-w/2,Y(d[1])-h/2,w,h); ctx.fillStyle=css("--ink"); if(s>1.8)ctx.fillText(d[2]<0?"new":d[2].toFixed(0)+" m/s",X(d[0])+w/2+2,Y(d[1])+3); }
+    ctx.lineWidth=1.6;
+    for(const d of dets){ const w=5.5*s,h=3.5*s; ctx.strokeStyle=css("--c-cam"); ctx.strokeRect(X(d[0])-w/2,Y(d[1])-h/2,w,h); }
     $("#camNote").innerHTML=`Boxes: what the camera reports to the twin (${dets.length}). Red dashed circles: vehicles it missed or could not place (${missed}).`;
     $("#camRec").hidden=false;
   } else {
