@@ -827,13 +827,14 @@ function initBuilder(root){
     freight:["urban freight zone","loading-zone allocation and delivery routing","delivery time, double-parking incidents and emissions","delivery vehicle GPS, loading-bay occupancy sensors, parcel volumes"],
     asset:["road and bridge asset network","inspection and maintenance timing","condition index and lifecycle cost","structural health sensors, pavement roughness, inspection records, IFC models"],
     cav:["connected and automated vehicle corridor","safety validation and cooperative control","time-to-collision conflicts and throughput","V2X messages, vehicle sensor logs, OpenDRIVE maps"]};
-  const GAP={g1:["Closing the loop",(d)=>`To what extent does automatic feedback from a ${d[0]} twin improve ${d[2]} compared with the same twin used as a shadow with manual decisions?`],
-    g2:["Data fusion",(d)=>`Which combination of ${d[3]} gives the most accurate real-time state estimate for a ${d[0]}, and how fast does accuracy fall as sources drop out?`],
-    g3:["Interoperability and federation",(d)=>`How can a ${d[0]} twin exchange state and decisions with neighbouring agencies’ twins through open standards, and what is lost in ${d[2]} without federation?`],
+  const art=w=>(/^[aeiou]/i.test(w)?"an ":"a ")+w;
+  const GAP={g1:["Closing the loop",(d)=>`To what extent does automatic feedback from ${art(d[0])} twin improve ${d[2]} compared with the same twin used as a shadow with manual decisions?`],
+    g2:["Data fusion",(d)=>`Which combination of ${d[3]} gives the most accurate real-time state estimate for ${art(d[0])}, and how fast does accuracy fall as sources drop out?`],
+    g3:["Interoperability and federation",(d)=>`How can ${art(d[0])} twin exchange state and decisions with neighbouring agencies’ twins through open standards, and what is lost in ${d[2]} without federation?`],
     g4:["Whole lifecycle",(d)=>`How can one ${d[0]} twin carry information from design and construction into operation, and how does that change decisions on ${d[1]}?`],
-    g5:["Human behaviour",(d)=>`How well do behavioural models inside a ${d[0]} twin reproduce how real users, including vulnerable road users, respond to changes in ${d[1]}?`],
-    g6:["Fidelity and trust",(d)=>`How should the accuracy and uncertainty of a ${d[0]} twin be measured and shown so that operators know when to trust its advice on ${d[1]}?`],
-    g7:["Security and privacy",(d)=>`What architecture lets a ${d[0]} twin use ${d[3]} without exposing individuals or control systems, and what does it cost in ${d[2]}?`],
+    g5:["Human behaviour",(d)=>`How well do behavioural models inside ${art(d[0])} twin reproduce how real users, including vulnerable road users, respond to changes in ${d[1]}?`],
+    g6:["Fidelity and trust",(d)=>`How should the accuracy and uncertainty of ${art(d[0])} twin be measured and shown so that operators know when to trust its advice on ${d[1]}?`],
+    g7:["Security and privacy",(d)=>`What architecture lets ${art(d[0])} twin use ${d[3]} without exposing individuals or control systems, and what does it cost in ${d[2]}?`],
     g8:["Scale and speed",(d)=>`Can an AI surrogate of the ${d[0]} simulation run faster than real time while keeping errors in ${d[2]} within operational limits?`],
     g9:["Organisation and skills",(d)=>`What organisational, procurement and skills conditions explain whether ${d[0]} twin pilots for ${d[1]} reach full operation?`]};
   const MET={sim:["Simulation experiment","Calibrate a SUMO or Aimsun model of a real site, validate it on held-out days, then compare scenarios across many random seeds.","Results depend on calibration quality; report GEH and travel-time fit."],
