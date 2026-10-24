@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Software guide · Transport Twin Study Path</title>
+<meta name="description" content="Which software each type of transport digital twin needs, layer by layer, with open-source and commercial options and what each tool does.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:8px}
+.types button{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 12px;display:grid;gap:2px}
+.types button b{font-family:var(--f-display);font-size:1.1rem;line-height:1.15}
+.types button span{font-size:.8rem;color:var(--muted)}
+.types button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.types button[aria-pressed="true"] span{color:var(--bg);opacity:.8}
+.filters{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.impl{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:clamp(16px,3vw,28px);display:grid;gap:16px}
+.impl header{display:grid;gap:6px;border-bottom:3px solid var(--acc);padding-bottom:12px}
+.impl h2{font-size:2.2rem}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--f-display);font-weight:600}
+.flow span{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:5px 10px}
+.flow b{color:var(--muted);font-weight:400}
+.layer{display:grid;grid-template-columns:200px minmax(0,1fr);gap:12px;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:700px){.layer{grid-template-columns:1fr}}
+.layer > div:first-child h4{font-size:1.2rem}
+.layer > div:first-child p{font-size:.85rem;color:var(--muted)}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:8px}
+.tool{border:1px solid var(--line);border-radius:8px;padding:9px 11px;display:grid;gap:3px;background:var(--bg);align-content:start}
+.tool .nm{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.tool .nm b{font-size:.98rem}
+.tag{font-family:var(--f-mono);font-size:.68rem;border-radius:4px;padding:1px 6px;white-space:nowrap}
+.tag.os{background:var(--good-soft);color:var(--good)}
+.tag.com{background:var(--l2-soft);color:var(--l2)}
+.tag.cloud{background:var(--l3-soft);color:var(--l3)}
+.tool p{font-size:.86rem;color:var(--muted)}
+.req{font-family:var(--f-display);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--bad);font-weight:700}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.kv .panel h4{color:var(--acc)}
+@media print{.sitebar,.hero,.types,.filters,footer,.noprint{display:none!important} body{background:#fff;padding:0} .impl{border:0} .tool{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="sitebar"><div class="in">
+  <a class="brand" href="index.html"><i></i>Transport Twin Study Path</a>
+  <nav aria-label="Site"><a href="index.html">Study path</a><a href="workshop.html">Workshop</a><a href="sumo.html">SUMO Lab</a><a href="software.html" aria-current="page">Software</a><a href="slides.html">Slides</a><a href="guides.html">Study guides</a></nav>
+</div></header>
+<div class="wrap">
+<section class="hero">
+  <span class="eyebrow">Implementation · software stacks</span>
+  <h1>Software guide</h1>
+  <p class="lede">Which software a transport digital twin needs depends on what it twins. Pick an implementation type to see the required software layer by layer, what each tool does, and open-source, commercial and cloud options. Items marked <span class="req">required</span> are the minimum for a working twin; the rest add capability.</p>
+</section>
+
+<section class="blk" id="layers">
+  <div class="blk-head"><span class="eyebrow">Common to every twin</span><h2>The eight software layers</h2><p>Every implementation type below uses these layers. What changes is the simulation or analysis engine in layer 5 and the actuation path in layer 8.</p></div>
+  <div class="tbl"><table><thead><tr><th>#</th><th>Layer</th><th>What the software must do</th><th>Typical choices</th></tr></thead><tbody>
+  <tr><td>1</td><td>Edge sensing</td><td>Turn raw signals (video, loops, GPS, strain) into clean measurements near the source</td><td>NVIDIA DeepStream on Jetson, OpenCV, Ultralytics YOLO, ByteTrack, Node-RED</td></tr>
+  <tr><td>2</td><td>Messaging</td><td>Move measurements reliably and in order, with timestamps</td><td>Eclipse Mosquitto or EMQX (MQTT), Apache Kafka</td></tr>
+  <tr><td>3</td><td>Context and twin registry</td><td>Keep the current state of every modelled object and its relationships</td><td>FIWARE Orion-LD (NGSI-LD), Eclipse Ditto, Azure Digital Twins, AWS IoT TwinMaker</td></tr>
+  <tr><td>4</td><td>Storage</td><td>Keep history, geometry and time series, queryable by place and time</td><td>PostgreSQL + PostGIS, TimescaleDB, InfluxDB, object storage with Parquet</td></tr>
+  <tr><td>5</td><td>Models and analytics</td><td>Estimate state, predict, simulate what-if scenarios</td><td>SUMO, Aimsun, PTV Vissim/Visum, MATSim, PyTorch, scikit-learn, OpenSees</td></tr>
+  <tr><td>6</td><td>Visualisation</td><td>Show the twin on maps, in 3D and on dashboards</td><td>CesiumJS, deck.gl, Unreal Engine or Unity, Grafana, QGIS, ArcGIS</td></tr>
+  <tr><td>7</td><td>Integration and APIs</td><td>Expose data and decisions to other systems using standards</td><td>REST/GraphQL APIs, GTFS-Realtime, DATEX II, NGSI-LD, OGC APIs</td></tr>
+  <tr><td>8</td><td>Actuation and operations</td><td>Send decisions back safely; deploy, monitor and secure everything</td><td>NTCIP/SNMP to controllers, operator consoles, Docker, Kubernetes, Prometheus, Keycloak</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="blk" id="types">
+  <div class="blk-head"><span class="eyebrow">By implementation type</span><h2>Choose what you are twinning</h2></div>
+  <div class="types" id="typeBtns"></div>
+  <div class="filters"><span class="eyebrow">Show</span><div class="seg" id="lic"><button data-f="all" aria-pressed="true">All tools</button><button data-f="os" aria-pressed="false">Open source</button><button data-f="com" aria-pressed="false">Commercial and cloud</button></div><label class="note"><input type="checkbox" id="reqOnly"> Required only</label><button class="btn ghost noprint" id="print">Print this stack</button></div>
+  <article class="impl" id="impl"></article>
+</section>
+
+<section class="blk" id="choose">
+  <div class="blk-head"><span class="eyebrow">Choosing</span><h2>How to choose between tools</h2></div>
+  <div class="kv">
+    <div class="panel"><h4>Standards and APIs</h4><p>Prefer tools that read and write the open standards your partners use (GTFS-Realtime, DATEX II, NGSI-LD, IFC 4.3). Ask for a documented API in every contract.</p></div>
+    <div class="panel"><h4>Licensing and lock-in</h4><p>Commercial simulators bring support and validated models. Open source brings control and no licence fees. Many agencies mix them: open data layers, a commercial simulator.</p></div>
+    <div class="panel"><h4>Data location</h4><p>Movement and video data are personal data. Check where cloud services store and process it, and what local law requires (for example the EU GDPR or Saudi Arabia’s PDPL).</p></div>
+    <div class="panel"><h4>Real-time performance</h4><p>Test the full loop’s latency with realistic load before buying. A simulator that runs faster than real time on a corridor may not on a city.</p></div>
+    <div class="panel"><h4>Skills</h4><p>Count the people who can maintain each tool after the pilot. Python, SQL and one simulator cover most needs.</p></div>
+    <div class="panel"><h4>Security</h4><p>Anything that can change a signal or a timetable needs authentication, network separation and audit logs. IEC 62443 and the NIST Cybersecurity Framework are common references.</p></div>
+  </div>
+  <p class="note">Tool names are examples, not endorsements. Versions and licences change; check each vendor’s current terms.</p>
+</section>
+<footer class="site">Part of the Transport Twin Study Path. The SUMO Lab implements the “Signalised corridor” stack with open-source tools.</footer>
+</div>
+<script>
+/* tool: [name, licence: os|com|cloud, what it does] */
+const T={
+deepstream:["NVIDIA DeepStream","com","Video analytics pipeline for Jetson and GPU servers: decode, detect, track, output metadata."],
+yolo:["Ultralytics YOLO","os","Object detection models for vehicles, pedestrians and cyclists (AGPL-3.0 or commercial licence)."],
+bytetrack:["ByteTrack","os","Multi-object tracker that keeps one id per vehicle across frames."],
+opencv:["OpenCV","os","Camera calibration, homography from pixels to road coordinates, image processing."],
+mosq:["Eclipse Mosquitto","os","Lightweight MQTT broker for sensor and edge messages."],
+emqx:["EMQX","os","Scalable MQTT broker with clustering; enterprise edition available."],
+kafka:["Apache Kafka","os","High-volume, ordered event streaming between all parts of the twin."],
+orion:["FIWARE Orion-LD","os","NGSI-LD context broker holding the live state of each entity (junction, bus, bridge)."],
+ditto:["Eclipse Ditto","os","Framework for managing digital twins of devices and their state."],
+adt:["Azure Digital Twins","cloud","Managed twin graph service with a modelling language (DTDL)."],
+twinmaker:["AWS IoT TwinMaker","cloud","Managed service linking data sources to 3D scenes and twin entities."],
+postgis:["PostgreSQL + PostGIS","os","Relational database with spatial queries: network, assets, zones."],
+timescale:["TimescaleDB","os","Time-series extension for PostgreSQL: detector counts, speeds, sensor history."],
+influx:["InfluxDB","os","Time-series database for high-rate sensor data."],
+flink:["Apache Flink","os","Stream processing: clean, aggregate and join data as it arrives."],
+python:["Python data stack","os","pandas, GeoPandas, NumPy, SciPy for analysis and pipelines."],
+pytorch:["PyTorch","os","Deep learning for prediction (LSTM, graph neural networks) and surrogates."],
+pyg:["PyTorch Geometric","os","Graph neural networks on road and transit networks."],
+sklearn:["scikit-learn","os","Classical machine learning: regression, classification, anomaly detection."],
+mlflow:["MLflow","os","Tracks model versions, experiments and deployments."],
+sumo:["Eclipse SUMO","os","Microscopic traffic simulation with TraCI for live control (EPL-2.0)."],
+aimsun:["Aimsun Next / Aimsun Live","com","Hybrid macro–meso–micro simulation; Live runs real-time prediction for operations centres."],
+vissim:["PTV Vissim","com","Detailed microscopic simulation of vehicles, transit and pedestrians."],
+visum:["PTV Visum","com","Macroscopic multimodal planning and demand models."],
+optima:["PTV Optima","com","Real-time traffic model and short-term prediction for operations."],
+matsim:["MATSim","os","Agent-based simulation of whole-day travel for large cities."],
+carla:["CARLA","os","Driving simulator with sensor models for automated vehicles; co-simulates with SUMO."],
+autoware:["Autoware","os","Open automated-driving software stack on ROS 2."],
+ros:["ROS 2","os","Robotics middleware connecting vehicle software components."],
+esmini:["esmini / OpenSCENARIO","os","Runs ASAM OpenSCENARIO test scenarios on OpenDRIVE roads."],
+carmaker:["IPG CarMaker","com","Commercial vehicle dynamics and ADAS testing environment."],
+otp:["OpenTripPlanner","os","Multimodal journey planning from GTFS and OpenStreetMap."],
+gtfsval:["GTFS validators","os","Check schedule and realtime feeds before the twin trusts them."],
+opentrack:["OpenTrack","com","Railway operations simulation for timetables and disruptions."],
+railsys:["RailSys","com","Railway timetable construction and capacity simulation."],
+jsprit:["jsprit","os","Vehicle routing optimisation for delivery tours."],
+ortools:["Google OR-Tools","os","Optimisation solvers for routing, scheduling and assignment."],
+anylogic:["AnyLogic","com","Multi-method simulation for ports, terminals, warehouses and fleets."],
+opensees:["OpenSees","os","Structural finite-element analysis of bridges under load and earthquakes."],
+fe:["ANSYS / Abaqus","com","Commercial finite-element analysis for detailed structural models."],
+itwin:["Bentley iTwin","com","Infrastructure twin platform linking engineering models (roads, rail, bridges) with live data."],
+civil3d:["Autodesk Civil 3D","com","Design models of roads and corridors; export to IFC."],
+ifcos:["IfcOpenShell","os","Read, write and query IFC 4.3 models in Python."],
+cloudcompare:["CloudCompare","os","Process and compare point clouds from laser scanning."],
+pix4d:["Pix4D / DJI Terra","com","Photogrammetry from drone images to 3D models and orthophotos."],
+qgis:["QGIS","os","Desktop GIS for network editing, mapping and spatial analysis."],
+arcgis:["ArcGIS","com","Enterprise GIS with 3D scenes and digital twin tooling."],
+cesium:["CesiumJS","os","Web 3D globe and 3D Tiles for city-scale twins (Apache-2.0)."],
+deckgl:["deck.gl / kepler.gl","os","Web visualisation of large movement and network datasets."],
+unreal:["Unreal Engine / Unity","com","Photorealistic 3D for public engagement and simulators."],
+grafana:["Grafana","os","Operational dashboards on time-series and SQL data."],
+snmp:["NTCIP 1202 over SNMP","os","Standard objects to read and command signal controllers (e.g. via pysnmp)."],
+atms:["Vendor ATMS / signal system","com","The agency’s traffic management system; the twin connects through its API."],
+cadavl:["Operator CAD/AVL system","com","Bus dispatch system that receives holding or dispatch instructions."],
+cmms:["Asset management system (CMMS)","com","Work orders and inspection records for maintenance decisions."],
+docker:["Docker + Kubernetes","os","Package and run every service reliably; scale when needed."],
+prom:["Prometheus","os","Monitors latency, message rates and failures of the twin itself."],
+keycloak:["Keycloak","os","Single sign-on and role-based access for operators and APIs."],
+nodered:["Node-RED","os","Low-code wiring of sensors, gateways and APIs at the edge."],
+streamlit:["Streamlit","os","Quick analyst tools and what-if apps in Python."],
+pavement:["AASHTOWare Pavement ME","com","Mechanistic–empirical pavement performance prediction."],
+};
+/* implementation: [title, short, purpose, flow, layers: [[layer name, why, [[toolKey, required?]]]], compute, skills] */
+const IMPL={
+signal:["Signalised corridor","Junctions and arterials","Adjusts signal timings from live queues and arrivals; the SUMO Lab implements this one.",
+ ["Cameras and loops","Edge detection","MQTT","Twin state","Look-ahead simulation","Signal controller"],
+ [["Edge sensing","Detect and track vehicles at each junction",[["yolo",1],["bytetrack",1],["opencv",1],["deepstream",0]]],
+  ["Messaging","Detections to the twin within a second",[["mosq",1],["kafka",0]]],
+  ["State and storage","Current queues plus history for calibration",[["timescale",1],["postgis",1],["orion",0]]],
+  ["Simulation","Test timings before using them",[["sumo",1],["aimsun",0],["vissim",0]]],
+  ["Analytics","Short-term arrival prediction",[["python",1],["pytorch",0]]],
+  ["Visualisation","Operators see queues and recommendations",[["grafana",1],["deckgl",0]]],
+  ["Actuation","Extend or end green through a safety shell",[["snmp",1],["atms",0]]],
+  ["Operations","Run and watch the twin itself",[["docker",1],["prom",1],["keycloak",0]]]],
+ "Edge: one GPU module (Jetson Orin class) per 2–4 cameras. Server: 8–16 cores, 32–64 GB RAM for a corridor of up to 10 junctions.",
+ "Traffic engineering, Python, SQL, one simulator, basic networking."],
+highway:["Highway and motorway","Ramp metering, speed limits, incidents","Predicts congestion and incidents minutes ahead and sets variable speed limits, ramp meters and diversion messages.",
+ ["Loops, radar, probe GPS","Stream processing","State estimation","Prediction","Strategy test","ATMS"],
+ [["Data ingest","Loop and radar feeds, probe speeds, incidents",[["kafka",1],["flink",0],["nodered",0]]],
+  ["Storage","Lane-level history for every detector",[["timescale",1],["postgis",1]]],
+  ["State estimation and prediction","Speeds on every segment, 5–30 min ahead",[["python",1],["pytorch",1],["pyg",0],["mlflow",0]]],
+  ["Simulation","Compare speed-limit and diversion plans",[["aimsun",0],["optima",0],["sumo",0]]],
+  ["Integration","Share with navigation providers and neighbours",[["orion",0]]],
+  ["Visualisation","Control room view",[["grafana",1],["deckgl",0],["arcgis",0]]],
+  ["Actuation","Signs, meters and speed limits",[["atms",1]]],
+  ["Operations","Reliability and access control",[["docker",1],["prom",1],["keycloak",1]]]],
+ "Streaming cluster of 3+ nodes for a regional network; GPU optional for training models.",
+ "Traffic flow theory, data engineering, machine learning, control-room operations."],
+transit:["Public transport","Bus and metro operations","Mirrors every vehicle and passenger load to prevent bunching, adjust dispatching and inform passengers.",
+ ["AVL and APC","GTFS-Realtime","Twin state","Headway prediction","Holding decision","CAD/AVL"],
+ [["Feeds","Schedules and live vehicles",[["gtfsval",1],["kafka",0],["mosq",0]]],
+  ["Storage","Trips, stops, loads, history",[["postgis",1],["timescale",1]]],
+  ["Models","Travel times, loads, holding and dispatch",[["python",1],["sklearn",0],["pytorch",0],["matsim",0],["visum",0]]],
+  ["Journey and passenger","What riders see",[["otp",0]]],
+  ["Visualisation","Dispatcher and planner views",[["grafana",1],["deckgl",0],["qgis",0]]],
+  ["Actuation","Instructions to drivers",[["cadavl",1]]],
+  ["Operations","Run and secure",[["docker",1],["prom",0],["keycloak",0]]]],
+ "A single server (8 cores, 32 GB) handles a city bus network; add stream processing for very large fleets.",
+ "Transit operations, GTFS, Python, SQL."],
+rail:["Rail","Track, trains and timetables","Combines train positions, timetables and asset condition to recover from disruption and plan maintenance.",
+ ["Train positions","Condition sensors","Twin state","Timetable simulation","Dispatcher advice"],
+ [["Ingest","Signalling, positions and sensors",[["kafka",1]]],
+  ["Storage","Infrastructure model and history",[["postgis",1],["timescale",1],["ifcos",0]]],
+  ["Simulation","Timetable recovery and capacity",[["opentrack",0],["railsys",0]]],
+  ["Asset models","Track geometry and component health",[["python",1],["sklearn",0],["itwin",0]]],
+  ["Visualisation","Network and asset views",[["grafana",1],["cesium",0]]],
+  ["Actuation","Advice to dispatchers and maintenance",[["cmms",1]]],
+  ["Operations","Safety-grade separation from signalling",[["docker",1],["keycloak",1],["prom",1]]]],
+ "Server class depends on network size; signalling interfaces need certified, separated networks.",
+ "Railway operations, timetabling, reliability engineering, data engineering."],
+assets:["Roads and bridges","Asset condition and maintenance","Tracks the condition of pavements, bridges and tunnels to schedule inspection and repair before failure.",
+ ["Survey and sensors","3D and BIM model","Condition history","Deterioration model","Work orders"],
+ [["Capture","Drone, laser and survey data",[["pix4d",0],["cloudcompare",1]]],
+  ["Design and BIM","Geometry of each asset",[["ifcos",1],["civil3d",0],["itwin",0]]],
+  ["Sensing","Strain, vibration, roughness",[["mosq",1],["timescale",1]]],
+  ["Structural and pavement models","Load capacity and deterioration",[["opensees",0],["fe",0],["pavement",0],["python",1]]],
+  ["Storage","Asset register and history",[["postgis",1]]],
+  ["Visualisation","3D view of condition",[["cesium",1],["qgis",0],["arcgis",0]]],
+  ["Actuation","Inspection and repair orders",[["cmms",1]]]],
+ "Modest servers for data; workstations with GPUs for point clouds and finite-element runs.",
+ "Structural or pavement engineering, BIM, GIS, data analysis."],
+freight:["Freight, logistics and ports","Last-mile, terminals, ports","Coordinates delivery fleets, loading zones and terminal operations to cut delay and emissions.",
+ ["Fleet GPS","Bay sensors","Twin state","Routing and terminal simulation","Dispatch"],
+ [["Ingest","Fleet positions and bay occupancy",[["mosq",1],["kafka",0]]],
+  ["Storage","Orders, vehicles, bays",[["postgis",1],["timescale",0]]],
+  ["Optimisation","Routes and schedules",[["ortools",1],["jsprit",0]]],
+  ["Simulation","City traffic and terminal operations",[["matsim",0],["sumo",0],["anylogic",0]]],
+  ["Visualisation","Operator and city views",[["grafana",1],["deckgl",0]]],
+  ["Operations","Run and secure",[["docker",1],["keycloak",0]]]],
+ "A single server for a city pilot; optimisation scales with fleet size.",
+ "Logistics, operations research, Python."],
+cav:["Connected and automated vehicles","Testing and cooperative driving","Recreates roads, traffic and sensors so automated vehicles can be tested on rare and dangerous situations safely.",
+ ["HD map","Traffic simulation","Vehicle and sensor simulation","Driving stack","Scenario results"],
+ [["Road description","Lanes and signals in standard formats",[["esmini",1]]],
+  ["Traffic","Realistic surrounding traffic",[["sumo",1],["vissim",0]]],
+  ["Vehicle and sensors","Camera, lidar, radar models",[["carla",1],["carmaker",0],["unreal",0]]],
+  ["Driving software","The system under test",[["ros",1],["autoware",0]]],
+  ["Analytics","Safety measures from runs",[["python",1],["mlflow",0]]],
+  ["Operations","Many runs in parallel",[["docker",1]]]],
+ "Workstations or cloud machines with strong GPUs (one per simulator instance).",
+ "Robotics, vehicle dynamics, simulation, Python and C++."],
+city:["City-scale planning twin","Strategic and land-use planning","Tests new lines, road changes and developments across the whole city before committing money.",
+ ["Census and surveys","Demand model","City simulation","3D city","Public engagement"],
+ [["Data","Population, land use, networks",[["postgis",1],["qgis",1]]],
+  ["Demand and simulation","Who travels where and how",[["matsim",0],["visum",0],["sumo",0]]],
+  ["Transit","Journey planning",[["otp",0]]],
+  ["3D city","Buildings and streets",[["cesium",1],["arcgis",0],["unreal",0]]],
+  ["Analytics","Scenario comparison",[["python",1],["streamlit",0]]],
+  ["Platform","Shared state with other city systems",[["orion",0],["adt",0],["twinmaker",0]]]],
+ "Batch computing: multi-core servers for large agent-based runs (hours per scenario).",
+ "Transport planning, GIS, demand modelling, communication with the public."]
+};
+const $=s=>document.querySelector(s);
+let cur="signal", lic="all";
+$("#typeBtns").innerHTML=Object.entries(IMPL).map(([k,v])=>`<button data-k="${k}" aria-pressed="${k===cur}"><b>${v[0]}</b><span>${v[1]}</span></button>`).join("");
+const LBL={os:"open source",com:"commercial",cloud:"cloud service"};
+function show(){
+  const I=IMPL[cur], req=$("#reqOnly").checked;
+  document.querySelectorAll("#typeBtns button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.k===cur)));
+  const layers=I[4].map(([n,why,tools])=>{
+    const list=tools.filter(([k,r])=>(!req||r)&&(lic==="all"||(lic==="os"?T[k][1]==="os":T[k][1]!=="os")));
+    if(!list.length)return "";
+    return `<div class="layer"><div><h4>${n}</h4><p>${why}</p></div><div class="tools">${list.map(([k,r])=>{const t=T[k];return `<div class="tool"><div class="nm"><b>${t[0]}</b><span class="tag ${t[1]}">${LBL[t[1]]}</span></div>${r?'<span class="req">Required</span>':""}<p>${t[2]}</p></div>`}).join("")}</div></div>`;}).join("");
+  $("#impl").innerHTML=`<header><span class="eyebrow">Implementation type</span><h2>${I[0]}</h2><p>${I[2]}</p><div class="flow">${I[3].map((s,i)=>(i?"<b>→</b>":"")+`<span>${s}</span>`).join("")}</div></header>
+   ${layers||'<p class="note">No tools match these filters.</p>'}
+   <div class="kv"><div class="panel"><h4>Computing (indicative)</h4><p>${I[5]}</p></div><div class="panel"><h4>Skills in the team</h4><p>${I[6]}</p></div></div>`;
+  try{history.replaceState(null,"","#"+cur)}catch(e){}
+}
+document.querySelectorAll("#typeBtns button").forEach(b=>b.onclick=()=>{cur=b.dataset.k;show()});
+document.querySelectorAll("#lic button").forEach(b=>b.onclick=()=>{lic=b.dataset.f;document.querySelectorAll("#lic button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));show()});
+$("#reqOnly").onchange=show; $("#print").onclick=()=>window.print();
+const h=(location.hash||"").slice(1); if(IMPL[h])cur=h; show();
+</script>
+</body>
+</html>

@@ -1,12 +1,18 @@
 # Transport Twin Study Path
 
-An interactive, three-layer self-study website on digital twins for transportation.
+An interactive self-study website on digital twins for transportation.
+Live site: https://smrahmanbd.github.io/transport-twin-study/
 
-1. **Foundations** – what a digital twin is (model vs shadow vs twin), and how transport uses twins.
-2. **Build & implement** – data sources, standards, traffic flow theory, simulation (SUMO, Aimsun, Vissim), calibration (GEH) and a deployment roadmap.
-3. **Research frontier** – open research gaps from recent reviews, emerging methods, research design and a research-question builder.
+| Page | What it has |
+|------|-------------|
+| `index.html` – Study path | Three layers (foundations, build and implement, research frontier), each with intuition, a study guide, a mind map, an exercise, flashcards and a quiz |
+| `sumo.html` – SUMO Lab | Replays of real Eclipse SUMO runs on a three-signal corridor: fixed-time, actuated, a TraCI digital twin, and a twin fed only by virtual cameras; results over five seeds; calibration with GEH; implementation steps from SUMO to a real camera twin |
+| `slides.html` – Slides | Four presentation decks with speaker notes (print to PDF) |
+| `guides.html` – Study guides | Workbooks, a SUMO lab manual, a camera-twin implementation guide, a cheat sheet and a glossary (print to PDF) |
 
-Each layer has intuition cards, a study guide, an interactive mind map, a hands-on exercise, flashcards and a quiz.
+## SUMO scenario
 
-It is a single static page (`index.html`) with no build step, served by GitHub Pages.
-Open a specific layer with `#layer1`, `#layer2` or `#layer3` at the end of the URL.
+Everything needed to rerun the simulations is in [`sumo/`](sumo/) (see its README), or download
+`sumo/sumo_corridor_twin.zip`. The web page reads the exported results from `data/`.
+
+Static site, no build step, served by GitHub Pages.

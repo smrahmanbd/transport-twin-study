@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study guides · Transport Twin Study Path</title>
+<meta name="description" content="Printable study guides and workbooks on digital twins for transportation, including a SUMO lab manual, a camera twin implementation guide and a one-page cheat sheet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
+.shelf button{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 12px;display:grid;gap:2px;border-left:6px solid var(--c)}
+.shelf button b{font-family:var(--f-display);font-size:1.12rem;line-height:1.15}
+.shelf button span{font-size:.82rem;color:var(--muted)}
+.shelf button[aria-pressed="true"]{background:var(--sunk);outline:2px solid var(--c)}
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:clamp(18px,4vw,44px);display:grid;gap:18px;min-width:0}
+.doc header{display:grid;gap:6px;border-bottom:3px solid var(--c);padding-bottom:14px}
+.doc h2{font-size:2.3rem}
+.doc h3{color:var(--c);margin-top:6px}
+.doc p,.doc li{max-width:74ch}
+.doc ul,.doc ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.doc .obj{background:var(--bg);border-radius:8px;padding:12px 16px}
+.doc .formula{font-family:var(--f-mono);background:var(--sunk);border-radius:6px;padding:10px 14px;overflow-x:auto}
+.doc details{border:1px solid var(--line);border-radius:8px;padding:10px 14px;background:var(--bg)}
+.doc details summary{cursor:pointer;font-weight:700}
+.doc details[open] summary{margin-bottom:6px}
+.doc .ex{display:grid;gap:8px}
+.doc .ex > div{border-left:4px solid var(--c);padding-left:12px;display:grid;gap:6px}
+.doc .write{border-bottom:1px dashed var(--muted);min-height:1.6em}
+.doc .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.doc .card{border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:6px;align-content:start}
+.doc .card h4{color:var(--c)}
+.doc .check li{list-style:none;margin-left:-1.2em}
+.doc .check li::before{content:"☐  ";font-family:var(--f-mono)}
+.doc dl{display:grid;grid-template-columns:minmax(140px,max-content) 1fr;gap:6px 16px;margin:0}
+.doc dt{font-weight:700}
+.doc dd{margin:0}
+@media (max-width:560px){.doc dl{grid-template-columns:1fr}.doc dd{margin-bottom:6px}}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+@media print{
+  body{padding:0;background:#fff}
+  .sitebar,.hero,.shelf,.tools,footer{display:none!important}
+  .doc{border:0;padding:0}
+  .doc details{border:0;padding:0}
+  .doc details > summary{list-style:none}
+  .doc h3{break-after:avoid}
+  .doc .card,.doc .ex > div,table{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header class="sitebar"><div class="in">
+  <a class="brand" href="index.html"><i></i>Transport Twin Study Path</a>
+  <nav aria-label="Site"><a href="index.html">Study path</a><a href="workshop.html">Workshop</a><a href="sumo.html">SUMO Lab</a><a href="software.html">Software</a><a href="slides.html">Slides</a><a href="guides.html" aria-current="page">Study guides</a></nav>
+</div></header>
+<div class="wrap">
+<section class="hero">
+  <span class="eyebrow">Read, practise, print</span>
+  <h1>Study guides</h1>
+  <p class="lede">Seven guides for working through the material on paper or on screen. Each workbook has objectives, key ideas, worked problems and exercises with answers you can reveal. Choose a guide, then print it or save it as PDF.</p>
+</section>
+<div class="shelf" id="shelf"></div>
+<div class="tools" style="margin-top:14px"><button class="btn" id="print">Print or save PDF</button><button class="btn ghost" id="reveal">Show all answers</button><span class="note">Printing includes the answers you have opened.</span></div>
+<section class="blk"><article class="doc" id="doc"></article></section>
+<footer class="site">Guides follow the integrated 12-week syllabus. SUMO figures come from the SUMO Lab runs (Eclipse SUMO 1.28.0; seed 42 and held-out seeds 1–5).</footer>
+</div>
+<script>
+const ans=(q,a)=>`<div><p><b>${q}</b></p><details><summary>Answer</summary><p>${a}</p></details></div>`;
+const G={
+g1:{t:"Foundations workbook",s:"Layer 1 · weeks 1–2",c:"--l1",h:`
+<div class="obj"><b>After this guide you can:</b><ul><li>Define a digital twin and name its three parts.</li><li>Classify any system as a model, shadow or twin.</li><li>Match transport decisions to their time scales.</li><li>Ask the three questions that expose “twin-washing”.</li></ul></div>
+<h3>1. The idea in one paragraph</h3><p>A digital twin is a virtual representation of one specific physical system, kept in step with it through data, and used to support or automate decisions about it. Grieves named three parts: the physical entity, the virtual entity, and the connection between them. The connection runs both ways: data comes in, decisions go back out.</p>
+<h3>2. Model, shadow, twin</h3><div class="tbl"><table><thead><tr><th>Level</th><th>Data in</th><th>Decisions out</th><th>Ask yourself</th></tr></thead><tbody><tr><td>Model</td><td>Manual</td><td>Manual</td><td>Is it updated only when someone imports new data?</td></tr><tr><td>Shadow</td><td>Automatic</td><td>Manual</td><td>Does a person have to act on what it shows?</td></tr><tr><td>Twin</td><td>Automatic</td><td>Automatic</td><td>Does it change the real system by itself, within limits?</td></tr></tbody></table></div>
+<h3>3. Five questions a twin answers</h3><ol><li>What is happening now? (monitor)</li><li>Why? (diagnose)</li><li>What happens next? (predict)</li><li>What if we try X? (simulate)</li><li>What should we do? (act)</li></ol>
+<h3>4. Decisions and their clocks</h3><div class="tbl"><table><thead><tr><th>Decision</th><th>Clock</th><th>Data it needs</th></tr></thead><tbody><tr><td>Signal timing</td><td>Seconds</td><td>Queues, arrivals at each approach</td></tr><tr><td>Incident response</td><td>Minutes</td><td>Speeds, incident reports, camera feeds</td></tr><tr><td>Bus holding</td><td>Minutes</td><td>Bus positions, headways</td></tr><tr><td>Pavement repair</td><td>Weeks–months</td><td>Roughness, cracking, traffic loading</td></tr><tr><td>New transit line</td><td>Years</td><td>Travel demand, land use</td></tr></tbody></table></div>
+<h3>Exercises</h3><div class="ex">
+${ans("1. A port shows live crane and truck positions on a wall screen. Supervisors radio instructions. Model, shadow or twin?","Shadow. Data flows in automatically; decisions go back by people.")}
+${ans("2. Name the three parts of a twin for a single bridge.","The physical bridge; a virtual model of it (geometry, materials, condition, loads); and the connection: sensor data in (strain, vibration, inspections) and decisions out (load limits, repair orders).")}
+${ans("3. Why does the time scale of a decision matter when designing a twin?","It sets the update rate, the model detail and the latency you can accept. A signal twin needs data every second; a pavement twin can update weekly.")}
+${ans("4. A vendor says its product is a digital twin. Write the three questions you would ask.","Which data flows in automatically and how often? Which decision does it change, and who or what acts on it? How is its accuracy measured against reality?")}
+${ans("5. Turn this shadow into a twin: a live bus map that dispatchers watch.","Add prediction of bunching and an automatic or one-click instruction to drivers (hold or skip), then measure the effect on headways. The loop closes when decisions go back to buses without manual relaying.")}
+</div>
+<h3>Self-test (no answers)</h3><ol><li>Draw the five-layer anatomy from memory and add the feedback arrow.</li><li>Give one transport example for each of the five questions.</li><li>Explain to a non-engineer why a 3D city model alone is not a twin.</li></ol>`},
+g2:{t:"Build & implement workbook",s:"Layer 2 · weeks 3–8",c:"--l2",h:`
+<div class="obj"><b>After this guide you can:</b><ul><li>Choose data sources and standards for a twin.</li><li>Use q = k × v and the Greenshields model to estimate capacity.</li><li>Choose a simulation level and explain TraCI.</li><li>Calibrate and validate with GEH.</li><li>Plan a seven-step rollout.</li></ul></div>
+<h3>1. Formulas you must know</h3>
+<div class="formula">q = k × v<br>Greenshields: v = v<sub>f</sub>(1 − k/k<sub>j</sub>)   q<sub>max</sub> = v<sub>f</sub>·k<sub>j</sub>/4 at k<sub>c</sub> = k<sub>j</sub>/2<br>GEH = √( 2(M − C)² / (M + C) )   target: GEH &lt; 5 on ≥ 85% of links</div>
+<h3>2. Worked problems</h3><div class="ex">
+<div><p><b>Capacity.</b> A lane has v<sub>f</sub> = 90 km/h and k<sub>j</sub> = 100 veh/km.</p><p>k<sub>c</sub> = 50 veh/km; speed at capacity = 45 km/h; q<sub>max</sub> = 90 × 100 / 4 = <b>2,250 veh/h</b>.</p></div>
+<div><p><b>GEH.</b> Model 450 veh/h, count 520 veh/h.</p><p>GEH = √(2 × 70² / 970) = √10.1 ≈ <b>3.2</b>: passes.</p></div>
+<div><p><b>Latency budget.</b> A signal twin must decide within 2 s. Camera processing takes 0.4 s, network 0.2 s, state update 0.3 s, look-ahead simulation 1.5 s.</p><p>Total 2.4 s: too slow. Shorten the look-ahead (fewer candidates or a surrogate model) or run it continuously ahead of time.</p></div></div>
+<h3>3. Choosing a simulation level</h3><div class="tbl"><table><thead><tr><th>If the decision is about…</th><th>Use</th><th>Example tool</th></tr></thead><tbody><tr><td>Lane changes, signals, ramps</td><td>Microscopic</td><td>SUMO, Vissim</td></tr><tr><td>Route choice across a city</td><td>Mesoscopic</td><td>Aimsun meso, MATSim</td></tr><tr><td>Regional strategy, fast forecasts</td><td>Macroscopic</td><td>Visum, cell transmission</td></tr><tr><td>Automated vehicle sensors</td><td>Vehicle level</td><td>CARLA + SUMO</td></tr></tbody></table></div>
+<h3>4. Standards picker</h3><ul><li>Transit schedules and live data: GTFS, GTFS-Realtime, SIRI, NeTEx</li><li>Road traffic exchange: DATEX II</li><li>Signal controllers: NTCIP 1202</li><li>Smart city data: NGSI-LD (FIWARE)</li><li>3D and assets: CityGML, IFC 4.3, OpenDRIVE</li></ul>
+<h3>Exercises</h3><div class="ex">
+${ans("1. v<sub>f</sub> = 110 km/h, k<sub>j</sub> = 70 veh/km. Find capacity and critical density.","k<sub>c</sub> = 35 veh/km; q<sub>max</sub> = 110 × 70 / 4 = 1,925 veh/h per lane.")}
+${ans("2. Model 1,800 veh/h, count 1,500 veh/h. GEH? Pass or fail?","√(2 × 300² / 3,300) = √54.5 ≈ 7.4. Fails; check demand or network coding on that link.")}
+${ans("3. Why validate on days not used for calibration?","A model always fits the data it was tuned on. Only unseen data shows whether it predicts.")}
+${ans("4. Which data source would you add to loops to estimate queues at a junction, and why?","Video with computer vision (or radar): loops see one point, while a camera sees the whole queue. Fusing both covers each other's blind spots.")}
+${ans("5. Put these in order: close the loop; data audit; shadow first; use case; human in the loop; model and validate; scale.","Use case → data audit → shadow first → model and validate → human in the loop → close the loop → scale.")}
+</div>`},
+g3:{t:"Research design workbook",s:"Layer 3 · capstone",c:"--l3",h:`
+<div class="obj"><b>After this guide you can:</b><ul><li>Place a study on the maturity ladder.</li><li>Pick a gap and justify it from the literature.</li><li>Write a research question, design and evaluation plan.</li><li>Name the main threats to validity.</li></ul></div>
+<h3>1. The ten gaps</h3><div class="two">
+<div class="card"><h4>Technical</h4><ol><li value="1">Closing the loop</li><li value="2">Data fusion and quality</li><li value="3">Interoperability and federation</li><li value="4">Whole-lifecycle twins</li><li value="8">Scale and real-time computation</li></ol></div>
+<div class="card"><h4>Human, trust and organisation</h4><ol><li value="5">Human behaviour and vulnerable road users</li><li value="6">Fidelity, uncertainty and trust</li><li value="7">Security, privacy, connectivity</li><li value="9">Organisation, skills, business models</li><li value="10">Under-studied modes such as buses</li></ol></div></div>
+<h3>2. Research question formula</h3><div class="formula">To what extent does [twin feature] change [measure] for [decision] on [system], compared with [baseline]?</div><p>Example: To what extent does feeding the twin camera data instead of loop data change time loss for signal timing on a three-junction corridor, compared with actuated control?</p>
+<h3>3. Evaluation plan template</h3><div class="tbl"><table><thead><tr><th>Dimension</th><th>Your measure</th><th>Target or baseline</th></tr></thead><tbody><tr><td>Fidelity</td><td class="write"></td><td class="write"></td></tr><tr><td>Timeliness</td><td class="write"></td><td class="write"></td></tr><tr><td>Decision value</td><td class="write"></td><td class="write"></td></tr><tr><td>Safety</td><td class="write"></td><td class="write"></td></tr><tr><td>Robustness</td><td class="write"></td><td class="write"></td></tr><tr><td>Acceptance</td><td class="write"></td><td class="write"></td></tr></tbody></table></div>
+<h3>4. Threats to validity checklist</h3><ul class="check"><li>Is the model calibrated and validated on different data?</li><li>Did you use several random seeds and report the spread?</li><li>Could demand, weather or events explain a before–after change?</li><li>Are results specific to one site? Say so.</li><li>Did you classify other studies by data flow, not by their label?</li></ul>
+<h3>Exercises</h3><div class="ex">
+${ans("1. A paper describes a 3D city model updated monthly from surveys and calls it a twin. Which rung?","Rung 1, a digital model: no automatic data flow in either direction.")}
+${ans("2. In the SUMO Lab, a twin tuned on one seed lost 28.0 s per trip on that seed but 48.7 s on five new seeds, against 35.0 s for actuated control. Which gap and which lesson?","Gap 6, fidelity, uncertainty and trust. The lesson is overfitting: tune on training seeds or days, then report results on held-out ones.")}
+${ans("3. Write a research question about gap 1 for a metro line.","To what extent does automatic dwell-time control by a twin improve headway regularity on a metro line, compared with the same twin advising controllers manually?")}
+${ans("4. Name a threat to validity for a single-seed simulation result, and a fix.","Random variation may favour one controller. Run several seeds and report the mean and range; the SUMO Lab does this for five seeds.")}
+</div>`},
+g4:{t:"SUMO lab manual",s:"Hands-on · 6 labs",c:"--c-cam",h:`
+<div class="obj"><b>After these labs you can:</b><ul><li>Build a SUMO network from plain XML.</li><li>Generate demand and place detectors.</li><li>Drive SUMO from Python with TraCI.</li><li>Run a twin controller and a camera-fed twin.</li><li>Calibrate with GEH and compare controllers fairly.</li></ul><p class="note">Files: github.com/smrahmanbd/transport-twin-study/tree/main/sumo</p></div>
+<h3>Lab 0 · Set up (15 min)</h3><div class="formula">pip install eclipse-sumo traci sumolib rtree<br>python -c "import sumo; print(sumo.SUMO_HOME)"</div><p>Set the environment variable SUMO_HOME to the printed path. Check with <code>sumo --version</code>.</p>
+<h3>Lab 1 · Network (20 min)</h3><ol><li>Open <code>corridor.nod.xml</code> and <code>corridor.edg.xml</code>. Sketch the corridor on paper.</li><li>Run netconvert for the fixed and actuated networks (commands in README).</li><li>Open <code>corridor_fixed.net.xml</code> in netedit and find the signal programme at J2.</li></ol><p><b>Check:</b> J2 has 4 phases: main green 42 s, yellow 3 s, side green 42 s, yellow 3 s.</p>
+<h3>Lab 2 · Demand and sensors (20 min)</h3><ol><li>Run <code>make_routes.py</code>, <code>make_detectors.py</code> and <code>camera_sensor.py</code>.</li><li>Open <code>corridor.sumocfg</code> in sumo-gui and run it. Find the cameras (yellow) and the E2 detectors.</li></ol><p><b>Check:</b> 18 approach lanes have detectors.</p>
+<h3>Lab 3 · Baselines (20 min)</h3><div class="formula">python run_scenario.py --controller fixed --demand medium<br>python run_scenario.py --controller actuated --demand medium</div><p><b>Expected:</b> time loss about 136 s per trip with fixed-time and about 35 s with actuated control.</p>
+<h3>Lab 4 · Your first twin (40 min)</h3><ol><li>Read <code>twin_controller.py</code>. Mark the sense, estimate, decide and act parts.</li><li>Run <code>--controller twin</code> with <code>--gui</code> and watch J2 hold green for platoons.</li><li>Change <code>HORIZON</code> to 4 s and 20 s and record time loss and stops.</li></ol><p><b>Expected:</b> about 47 s time loss and 1.4 stops per trip at medium demand with the default 8 s horizon (seed 42). Fewer stops than actuated control, but more delay at this demand.</p>
+<h3>Lab 5 · Camera twin (30 min)</h3><ol><li>Read <code>camera_sensor.py</code>. List its five flaws.</li><li>Run <code>--controller twin_camera</code>. Note the detection rate it reports.</li><li>Set <code>p_far=0.95</code> and the noise to 0.3 m; rerun. How do the detection rate and the time loss change?</li></ol>
+<h3>Lab 6 · Calibrate and compare fairly (30 min)</h3><ol><li>Run <code>calibrate_geh.py</code>. Record the share of loops under GEH 5 before and after.</li><li>Run <code>multi_seed.py</code> and compare the range across seeds with the differences between controllers.</li></ol>
+<h3>Lab report template</h3><ul class="check"><li>Question and hypothesis</li><li>What you changed (one thing per run)</li><li>Results table: time loss, stops, eastbound corridor time, across seeds</li><li>One chart</li><li>What surprised you, and one threat to validity</li></ul>`},
+g5:{t:"Camera twin implementation guide",s:"From SUMO to the street",c:"--l2",h:`
+<div class="obj"><b>Purpose:</b> a step-by-step checklist for turning the SUMO camera twin into a pilot on a real corridor, with what each step must deliver and how to know it is done.</div>
+<div class="tbl"><table><thead><tr><th>#</th><th>Step</th><th>Deliverable</th><th>Done when</th></tr></thead><tbody>
+<tr><td>1</td><td>Use case and safety rules</td><td>One-page charter: decision, owner, measures, min/max green, fallback plan</td><td>Signed by the signal owner</td></tr>
+<tr><td>2</td><td>Camera siting and survey</td><td>Camera positions, coverage map, ≥ 4 surveyed ground points per camera, privacy assessment</td><td>Every approach covered 80–110 m</td></tr>
+<tr><td>3</td><td>Detection and tracking</td><td>Edge computer running a detector (e.g. YOLO) and tracker (e.g. ByteTrack)</td><td>≥ 90% of vehicles detected in a manual count sample</td></tr>
+<tr><td>4</td><td>Pixels to lanes</td><td>Homography per camera, lane map matching</td><td>Median position error ≤ 1.5 m on surveyed points</td></tr>
+<tr><td>5</td><td>Streaming</td><td>MQTT topics, message schema, clock sync (NTP/PTP)</td><td>End-to-end latency ≤ 1 s, 99.5% message delivery</td></tr>
+<tr><td>6</td><td>Twin synchronisation</td><td>SUMO model fed by detections; demand recalibrated every 15 min</td><td>Queue lengths within ±2 vehicles of video review</td></tr>
+<tr><td>7</td><td>Decision logic</td><td>Controller with look-ahead tests; logged reasons</td><td>Beats actuated control in calibrated simulation over ≥ 5 seeds</td></tr>
+<tr><td>8</td><td>Safety shell and actuation</td><td>Interface to the controller (NTCIP 1202 or vendor API) sending only extend or end-green</td><td>Fallback to normal plan when messages stop, tested</td></tr>
+<tr><td>9</td><td>Shadow mode</td><td>2–4 weeks of logged recommendations next to actual signal behaviour</td><td>Operators agree on failure cases and fixes</td></tr>
+<tr><td>10</td><td>Closed loop and evaluation</td><td>Control on agreed hours; matched-day comparison</td><td>Delay, stops and safety conflicts reported with uncertainty</td></tr></tbody></table></div>
+<h3>Key code fragments</h3>
+<p><b>Pixels to road coordinates</b></p><pre class="code">H, _ = cv2.findHomography(np.float32(pixel_pts), np.float32(road_pts))
+u, v = (x1 + x2) / 2, y2                      # bottom-centre of the box
+p = H @ np.array([u, v, 1.0]); x, y = p[0] / p[2], p[1] / p[2]</pre>
+<p><b>Publishing detections</b></p><pre class="code">client.publish("corridor/cameras/J2", json.dumps(
+    {"cam": "cam_J2", "t": time.time(), "dets": dets}), qos=1)</pre>
+<p><b>Mirroring tracked vehicles in SUMO</b></p><pre class="code">traci.vehicle.moveToXY(f"cam{d['track']}", "", -1, d["x"], d["y"], keepRoute=2)</pre>
+<h3>Risks to plan for</h3><div class="two"><div class="card"><h4>Technical</h4><ul><li>Night, rain, glare and dirty lenses lower detection</li><li>Occlusion in long queues (detection fell from 84% to 56% between low and high demand in the SUMO Lab)</li><li>Camera movement after maintenance breaks the homography</li></ul></div><div class="card"><h4>Organisational</h4><ul><li>Who may change signal timings automatically</li><li>Privacy approvals for video processing</li><li>Who maintains the models after the pilot</li></ul></div></div>`},
+cheat:{t:"One-page cheat sheet",s:"Formulas, levels, commands",c:"--l1",h:`
+<div class="two">
+<div class="card"><h4>Levels</h4><p><b>Model</b> manual ⇄ manual · <b>Shadow</b> auto → manual · <b>Twin</b> auto ⇄ auto</p><p>Five questions: now · why · next · what if · act</p></div>
+<div class="card"><h4>Traffic flow</h4><p class="mono">q = k·v · q<sub>max</sub> = v<sub>f</sub>k<sub>j</sub>/4 · k<sub>c</sub> = k<sub>j</sub>/2</p><p>Motorway lane capacity ≈ 1,800–2,200 veh/h</p></div>
+<div class="card"><h4>Calibration</h4><p class="mono">GEH = √(2(M−C)²/(M+C))</p><p>GEH &lt; 5 on ≥ 85% of links · travel time within 15% on ≥ 85% of routes</p></div>
+<div class="card"><h4>Simulation levels</h4><p>Macro: regions · Meso: city · Micro: corridor · Vehicle: AV sensors</p></div>
+<div class="card"><h4>Standards</h4><p>GTFS(-RT), SIRI, NeTEx · DATEX II · NTCIP · NGSI-LD · CityGML · IFC 4.3 · OpenDRIVE · SAE J2735</p></div>
+<div class="card"><h4>Rollout</h4><p>Use case → audit → shadow → validate → human in loop → close loop → scale</p></div>
+<div class="card"><h4>SUMO commands</h4><pre class="code">netconvert -n x.nod.xml -e x.edg.xml -o x.net.xml
+sumo-gui -c corridor.sumocfg
+python run_scenario.py --controller twin --gui</pre></div>
+<div class="card"><h4>TraCI calls</h4><pre class="code">traci.simulationStep()
+traci.lanearea.getJamLengthVehicle(det)
+traci.vehicle.getPosition(veh)
+traci.trafficlight.setPhase(tls, i)
+traci.trafficlight.setPhaseDuration(tls, s)</pre></div>
+<div class="card"><h4>Evaluate a twin on</h4><p>Fidelity · timeliness · decision value · safety · robustness · acceptance</p></div>
+<div class="card"><h4>A research question names</h4><p>The decision + the gap + the evidence</p></div>
+</div>`},
+gloss:{t:"Glossary",s:"A–Z of key terms",c:"--l3",h:`<dl>
+<dt>Actuated control</dt><dd>Signals that extend or end green based on local detector gaps.</dd>
+<dt>APC / AVL</dt><dd>Automatic passenger counting / automatic vehicle location on buses.</dd>
+<dt>Calibration</dt><dd>Adjusting model inputs and parameters so outputs match observations.</dd>
+<dt>Capacity</dt><dd>The maximum sustainable flow on a lane or road.</dd>
+<dt>Co-simulation</dt><dd>Running two simulators together, such as SUMO with CARLA.</dd>
+<dt>Critical density</dt><dd>The density at which flow peaks.</dd>
+<dt>Data assimilation</dt><dd>Updating a model's state estimate with new observations.</dd>
+<dt>DATEX II</dt><dd>European standard for exchanging road traffic information.</dd>
+<dt>Digital model / shadow / twin</dt><dd>No automatic data flow / automatic flow in only / automatic flow both ways.</dd>
+<dt>E1 / E2 detector</dt><dd>SUMO induction loop (a point) / lane-area detector (a stretch of lane).</dd>
+<dt>Federated twin</dt><dd>Several organisations' twins exchanging state and decisions.</dd>
+<dt>GEH</dt><dd>Statistic comparing modelled and counted flows; under 5 is a good match.</dd>
+<dt>GTFS-Realtime</dt><dd>Standard feed of live transit positions, delays and alerts.</dd>
+<dt>Homography</dt><dd>A mapping from image pixels to positions on the road plane.</dd>
+<dt>IFC 4.3</dt><dd>BIM standard that covers roads, rail and bridges.</dd>
+<dt>Map matching</dt><dd>Assigning a measured position to a lane or road.</dd>
+<dt>MQTT</dt><dd>Lightweight publish–subscribe messaging, common for sensors.</dd>
+<dt>NGSI-LD</dt><dd>ETSI context-information API used by FIWARE platforms.</dd>
+<dt>NTCIP 1202</dt><dd>US standard objects for communicating with signal controllers.</dd>
+<dt>Occlusion</dt><dd>A camera's view of one vehicle blocked by another.</dd>
+<dt>OD matrix</dt><dd>Trips between every pair of zones.</dd>
+<dt>Platoon</dt><dd>A group of vehicles travelling together, often released by a signal.</dd>
+<dt>Safety surrogate</dt><dd>A conflict measure, such as time-to-collision, used instead of crash counts.</dd>
+<dt>Shadow mode</dt><dd>Running a twin that only recommends while people keep control.</dd>
+<dt>Surrogate model</dt><dd>A fast machine-learning approximation of a slow simulator.</dd>
+<dt>Time loss</dt><dd>Extra travel time compared with driving the route at free speed.</dd>
+<dt>TraCI</dt><dd>SUMO's interface for reading and controlling a running simulation.</dd>
+<dt>Validation</dt><dd>Testing a calibrated model on data not used for calibration.</dd></dl>`}
+};
+const $=s=>document.querySelector(s);
+let cur="g1";
+$("#shelf").innerHTML=Object.entries(G).map(([k,g])=>`<button data-k="${k}" style="--c:var(${g.c})" aria-pressed="${k===cur}"><b>${g.t}</b><span>${g.s}</span></button>`).join("");
+function show(k){cur=k;const g=G[k];document.querySelectorAll("#shelf button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.k===k)));
+  const d=$("#doc"); d.style.setProperty("--c",`var(${g.c})`);
+  d.innerHTML=`<header><span class="eyebrow">Transport Twin Study Path · ${g.s}</span><h2>${g.t}</h2></header>${g.h}`;
+  try{history.replaceState(null,"","#"+k)}catch(e){}}
+document.querySelectorAll("#shelf button").forEach(b=>b.onclick=()=>show(b.dataset.k));
+$("#print").onclick=()=>window.print();
+$("#reveal").onclick=()=>document.querySelectorAll("#doc details").forEach(d=>d.open=true);
+const h=(location.hash||"").slice(1); show(G[h]?h:"g1");
+</script>
+</body>
+</html>

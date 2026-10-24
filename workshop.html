@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3-Day Workshop · Transport Twin Study Path</title>
+<meta name="description" content="A complete three-day workshop on digital twins for transportation: agenda, facilitator plans, SUMO labs, a camera-twin capstone, assessment and logistics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:700px){.days{grid-template-columns:1fr}}
+.days button{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px;display:grid;gap:2px;border-top:6px solid var(--c)}
+.days button b{font-family:var(--f-display);font-size:1.35rem}
+.days button span{font-size:.86rem;color:var(--muted)}
+.days button[aria-pressed="true"]{outline:2px solid var(--c);background:var(--sunk)}
+.agenda{display:grid;gap:8px}
+.slot{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;border-left:6px solid var(--k)}
+.slot.brk{background:var(--bg);border-style:dashed;padding-block:8px}
+@media (max-width:560px){.slot{grid-template-columns:1fr;gap:4px}}
+.slot .tm{font-family:var(--f-mono);font-size:.88rem;font-variant-numeric:tabular-nums;color:var(--muted)}
+.slot .tm b{display:block;color:var(--ink);font-size:.95rem}
+.slot h3{font-size:1.25rem}
+.slot .kind{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.1em;font-size:.76rem;font-weight:700;color:var(--k)}
+.slot details{margin-top:6px}
+.slot summary{cursor:pointer;font-weight:700;font-size:.92rem;color:var(--acc)}
+.slot .plan{display:grid;gap:8px;margin-top:8px;font-size:.94rem}
+.slot .plan ul,.slot .plan ol{margin:0;padding-left:1.2em;display:grid;gap:3px}
+.links{display:flex;flex-wrap:wrap;gap:6px}
+.links a{font-size:.82rem;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;background:var(--bg)}
+.links a:hover{border-color:var(--acc)}
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:640px){.tracks{grid-template-columns:1fr}}
+.tracks > div{background:var(--bg);border-radius:8px;padding:8px 12px}
+.tracks b{font-family:var(--f-display);font-size:1rem}
+.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.outcomes .panel h4{color:var(--acc)}
+.check li{list-style:none;margin-left:-1.2em}
+.check li::before{content:"☐  ";font-family:var(--f-mono)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+@media print{
+  .sitebar,.tools,.days,footer,.noprint{display:none!important}
+  body{background:#fff;padding:0}
+  .slot details{display:block}
+  .slot details > summary{display:none}
+  .slot,.panel{break-inside:avoid}
+  .dayblock[hidden]{display:grid!important}
+  .dayblock{break-before:page}
+}
+</style>
+</head>
+<body>
+<header class="sitebar"><div class="in">
+  <a class="brand" href="index.html"><i></i>Transport Twin Study Path</a>
+  <nav aria-label="Site"><a href="index.html">Study path</a><a href="workshop.html" aria-current="page">Workshop</a><a href="sumo.html">SUMO Lab</a><a href="software.html">Software</a><a href="slides.html">Slides</a><a href="guides.html">Study guides</a></nav>
+</div></header>
+<div class="wrap">
+<section class="hero">
+  <span class="eyebrow">Three-day professional workshop · 21 contact hours</span>
+  <h1>Digital Twins for Transportation Workshop</h1>
+  <p class="lede">From “what is a twin?” on the first morning to a working, camera-fed signal twin in SUMO and a deployment plan for your own city by the third afternoon. Engineers code in the labs; managers and planners follow a parallel non-coding track that designs the stack, the business case and the rollout.</p>
+  <div class="kpis">
+    <div class="stat"><div class="v">3 days</div><div class="k">08:30–16:30</div></div>
+    <div class="stat"><div class="v">12–24</div><div class="k">participants, 4–6 teams</div></div>
+    <div class="stat"><div class="v">6 labs</div><div class="k">hands-on in SUMO</div></div>
+    <div class="stat"><div class="v">1 capstone</div><div class="k">presented on day 3</div></div>
+  </div>
+  <div class="tools noprint"><a class="btn" href="#agenda">See the agenda</a><a class="btn ghost" href="#setup">Pre-workshop setup</a><button class="btn ghost" id="print">Print facilitator pack</button></div>
+</section>
+
+<section class="blk" id="outcomes">
+  <div class="blk-head"><span class="eyebrow">Outcomes</span><h2>By the end, participants can</h2></div>
+  <div class="outcomes">
+    <div class="panel"><h4>Day 1 · Understand</h4><ul><li>Tell a model, a shadow and a twin apart, and expose “twin-washing”.</li><li>Map a transport system to the five layers.</li><li>Audit the data and standards a twin needs.</li><li>Build and run a SUMO network.</li></ul></div>
+    <div class="panel"><h4>Day 2 · Build</h4><ul><li>Estimate capacity and calibrate with GEH.</li><li>Connect a twin controller to SUMO with TraCI.</li><li>Replace perfect sensors with a virtual camera and measure what that costs.</li><li>Choose software for each layer.</li></ul></div>
+    <div class="panel"><h4>Day 3 · Apply</h4><ul><li>Compare controllers fairly across random seeds.</li><li>Frame a research question or pilot around a real gap.</li><li>Present a working prototype or plan.</li><li>Write a 10-step plan from SUMO to a real camera twin.</li></ul></div>
+  </div>
+</section>
+
+<section class="blk" id="agenda">
+  <div class="blk-head"><span class="eyebrow">Agenda</span><h2>Day by day</h2><p>Open any session for the facilitator plan: objectives, timing, activities, materials and what the two tracks do. Times assume a 08:30 start; shift as needed.</p></div>
+  <div class="days" id="dayBtns"></div>
+  <div id="days"></div>
+</section>
+
+<section class="blk" id="capstone">
+  <div class="blk-head"><span class="eyebrow">Capstone</span><h2>The team challenge</h2><p>Teams of 3–5 pick one brief on day 1 afternoon, work on it in the labs, and present on day 3 (10 minutes plus 5 for questions). Each team should mix both tracks.</p></div>
+  <div class="tbl"><table><thead><tr><th>Brief</th><th>Track</th><th>What to deliver</th></tr></thead><tbody>
+    <tr><td><b>A. Beat actuated control</b> at medium demand across five seeds</td><td>Engineers</td><td>Changed <code>twin_controller.py</code>, results for seeds 1–5 with ranges, and why it works</td></tr>
+    <tr><td><b>B. Fuse camera and loops</b> to close the sensing gap</td><td>Engineers</td><td>Fusion logic, detection and time-loss comparison with the camera-only twin</td></tr>
+    <tr><td><b>C. Add a pedestrian crossing</b> at J2 with a safe walk time</td><td>Engineers</td><td>Network change, controller rule, effect on vehicles and pedestrians</td></tr>
+    <tr><td><b>D. Pilot plan</b> for a real corridor in your city</td><td>Managers</td><td>Charter, software stack from the Software guide, 10-step rollout, risks, budget headings</td></tr>
+    <tr><td><b>E. Research proposal</b> on one of the ten gaps</td><td>Mixed</td><td>Question, design, measures, threats to validity, data plan</td></tr></tbody></table></div>
+  <h3>Scoring rubric (100 points)</h3>
+  <div class="tbl"><table><thead><tr><th>Criterion</th><th class="num">Points</th><th>Excellent looks like</th></tr></thead><tbody>
+    <tr><td>Technical soundness</td><td class="num">30</td><td>Works, follows twin principles (sense, estimate, decide, act), safety rules respected</td></tr>
+    <tr><td>Evidence</td><td class="num">25</td><td>Several seeds or held-out data, honest about where it does not help</td></tr>
+    <tr><td>Implementation realism</td><td class="num">20</td><td>Clear path to a real site: data, software, governance, fallback</td></tr>
+    <tr><td>Communication</td><td class="num">15</td><td>One clear message, one good chart, within time</td></tr>
+    <tr><td>Teamwork</td><td class="num">10</td><td>Both tracks contributed; roles were clear</td></tr></tbody></table></div>
+</section>
+
+<section class="blk" id="setup">
+  <div class="blk-head"><span class="eyebrow">Before the workshop</span><h2>Pre-workshop setup and pre-work</h2></div>
+  <div class="grid2">
+    <div class="panel"><h3>Participants (send one week before)</h3><ul class="check">
+      <li>Laptop with Windows, macOS or Linux, 8 GB RAM or more, admin rights</li>
+      <li>Python 3.9 or newer</li>
+      <li>Run: <code>pip install eclipse-sumo traci sumolib rtree</code></li>
+      <li>Download and unzip the <a href="sumo/sumo_corridor_twin.zip">SUMO scenario</a>; run <code>python run_scenario.py --controller fixed</code></li>
+      <li>Optional: install sumo-gui from eclipse.dev/sumo for the visual labs</li>
+      <li>Pre-work (about 90 minutes): Layer 1 of the <a href="index.html#layer1">Study path</a> and its quiz</li>
+      <li>Bring one transport problem from your own organisation</li></ul></div>
+    <div class="panel"><h3>Facilitators and room</h3><ul class="check">
+      <li>Two facilitators: a lead and a lab assistant (one per 12 participants in labs)</li>
+      <li>Projector, whiteboard, sticky notes, printed cheat sheets and lab manuals</li>
+      <li>Reliable Wi-Fi and power for every seat</li>
+      <li>Tables for teams of 3–5</li>
+      <li>Backup: USB sticks with the scenario and Python wheels</li>
+      <li>Test the full lab sequence on a clean laptop the day before</li>
+      <li>Print certificates; prepare the pre/post quiz</li></ul></div>
+  </div>
+</section>
+
+<section class="blk" id="assessment">
+  <div class="blk-head"><span class="eyebrow">Assessment</span><h2>How progress is measured</h2></div>
+  <div class="grid2">
+    <div class="panel"><h3>During the workshop</h3><ul><li><b>Pre-quiz</b> (day 1, 09:00) and <b>post-quiz</b> (day 3, 16:00): the same 15 questions drawn from the three layer quizzes.</li><li><b>Lab check-offs:</b> each lab has an expected result in the lab manual.</li><li><b>Exit tickets</b> at the end of each day: one thing learned, one question.</li><li><b>Capstone</b> scored with the rubric above.</li></ul></div>
+    <div class="panel"><h3>Certificate of completion</h3><ul><li>At least 80% attendance</li><li>Labs 1–4 checked off (engineers) or the design worksheets completed (managers)</li><li>Capstone presented</li></ul><p class="note">Organisations may add CPD hours in line with their professional body (21 contact hours).</p></div>
+  </div>
+  <div class="panel"><h3>Feedback form (end of day 3)</h3><ol><li>How well did the workshop meet its stated outcomes? (1–5)</li><li>Which session was most useful, and why?</li><li>Which session should change, and how?</li><li>Was the pace of the labs right? (too slow / right / too fast)</li><li>How likely are you to start a twin pilot in the next 12 months? (1–5)</li><li>What support would you need to do that?</li></ol></div>
+</section>
+
+<section class="blk" id="materials">
+  <div class="blk-head"><span class="eyebrow">Materials</span><h2>Everything used in the workshop</h2></div>
+  <div class="tbl"><table><thead><tr><th>Material</th><th>Used in</th><th>Link</th></tr></thead><tbody>
+    <tr><td>Slide decks (4) with speaker notes</td><td>All lecture sessions</td><td><a href="slides.html">Slides</a></td></tr>
+    <tr><td>Study path: intuition, mind maps, exercises, quizzes</td><td>Pre-work, recaps, quizzes</td><td><a href="index.html">Study path</a></td></tr>
+    <tr><td>SUMO Lab: replays, results, build steps</td><td>Labs 1–6, capstone</td><td><a href="sumo.html">SUMO Lab</a></td></tr>
+    <tr><td>SUMO scenario files</td><td>Labs and capstone</td><td><a href="sumo/sumo_corridor_twin.zip">Zip download</a></td></tr>
+    <tr><td>Software guide</td><td>Session 7, manager track, capstone D</td><td><a href="software.html">Software</a></td></tr>
+    <tr><td>Workbooks, lab manual, implementation guide, cheat sheet, glossary</td><td>Hand-outs</td><td><a href="guides.html">Study guides</a></td></tr></tbody></table></div>
+</section>
+<footer class="site">Workshop design based on the integrated 12-week syllabus, compressed for practitioners. Adapt times, briefs and examples to your city.</footer>
+</div>
+<script>
+/* slot: [start, end, kind, title, summary, plan(html) | null, links [[label, href]], tracks [eng, mgr] | null] */
+const K={lecture:"--l2",activity:"--l1",lab:"--c-cam",team:"--l3",admin:"--c-fixed",break:"--line"};
+const L={l1:["Slides · Layer 1","slides.html#l1"],l2:["Slides · Layer 2","slides.html#l2"],l3:["Slides · Layer 3","slides.html#l3"],ls:["Slides · SUMO","slides.html#sumo"],
+ p1:["Study path · Layer 1","index.html#layer1"],p2:["Study path · Layer 2","index.html#layer2"],p3:["Study path · Layer 3","index.html#layer3"],
+ lab:["Lab manual","guides.html#g4"],g1:["Workbook 1","guides.html#g1"],g2:["Workbook 2","guides.html#g2"],g3:["Research workbook","guides.html#g3"],g5:["Implementation guide","guides.html#g5"],cs:["Cheat sheet","guides.html#cheat"],
+ sumo:["SUMO Lab","sumo.html"],build:["SUMO build steps","sumo.html#build"],real:["SUMO to street","sumo.html#real"],res:["SUMO results","sumo.html#results"],cam:["Camera twin","sumo.html#camera"],cal:["Calibration","sumo.html#calibration"],sw:["Software guide","software.html"],cap:["Capstone briefs","#capstone"]};
+const DAYS=[
+{n:"Day 1",t:"Foundations and data",c:"--l1",slots:[
+["08:30","09:00","admin","Registration and laptop check","Confirm every laptop runs the fixed-time scenario.",`<ul><li>Lab assistant runs <code>python run_scenario.py --controller fixed</code> on each laptop.</li><li>Fix installs on the spot or pair the person with a neighbour.</li></ul>`,["build"],null],
+["09:00","09:30","admin","Welcome, goals and pre-quiz","Introductions, the three-day path, the 15-question pre-quiz.",`<ul><li>Each participant names one transport decision they would like to improve. Write them on the board; they come back in the capstone.</li><li>Pre-quiz on paper or screen (10 min). Keep scores for the post-quiz comparison.</li></ul>`,["p1"],null],
+["09:30","10:30","lecture","Session 1 · What a digital twin is","Definition, three parts, model vs shadow vs twin, five questions.",`<p><b>Objective:</b> classify any system as a model, shadow or twin.</p><ol><li>Slides L1 1–5 (25 min).</li><li><b>Sorting activity</b> (25 min): teams get 10 cards describing real systems (live traffic map, offline planning model, adaptive signals, bridge sensors with alerts…). Place each on the model/shadow/twin line and justify.</li><li>Debrief (10 min): which cards caused arguments? Usually the “alerts” ones.</li></ol>`,["l1","p1","g1"],null],
+["10:30","10:45","break","Break","",null,[],null],
+["10:45","12:00","activity","Session 2 · Anatomy and uses","Five layers, domains and time scales, the bus-loop example.",`<p><b>Objective:</b> map a real system to the five layers and find the missing feedback path.</p><ol><li>Slides L1 6–10 (30 min).</li><li><b>Layer mapping</b> (35 min): each team takes one participant’s problem from the morning and fills the five layers plus feedback on a flip chart.</li><li>Gallery walk (10 min).</li></ol>`,["l1","g1"],null],
+["12:00","13:00","break","Lunch and prayer break","",null,[],null],
+["13:00","14:15","lecture","Session 3 · Data, sensors and standards","Pipeline, data sources and their blind spots, standards.",`<p><b>Objective:</b> audit what data a twin needs and in which format.</p><ol><li>Slides L2 1–5 (35 min).</li><li><b>Data audit worksheet</b> (30 min): for the team’s problem list every source, owner, update rate, standard, quality issue and access route.</li><li>Quick check: which standard carries live bus delays?</li></ol>`,["l2","g2","sw"],["Complete the audit for a corridor in your city.","Same worksheet; add who must sign data-sharing agreements."]],
+["14:15","14:30","break","Break","",null,[],null],
+["14:30","15:45","lab","Lab 1 · SUMO network and sensors","Build the corridor, add detectors and cameras, open sumo-gui.",`<p><b>Objective:</b> every engineer has a running corridor with detectors and cameras.</p><ol><li>Lab manual Labs 0–2.</li><li>Check-off: J2 shows 4 phases; 18 approach lanes have detectors.</li></ol>`,["lab","build"],["Labs 0–2 in Python and sumo-gui.","Watch the replay on the SUMO Lab page; list what a control-room operator would need to see. Start the Software guide for the team’s problem."]],
+["15:45","16:20","team","Team formation and capstone choice","Form teams of 3–5 mixing tracks; choose a brief A–E.",`<ul><li>Teams write a one-paragraph problem statement and pick a brief.</li><li>Facilitator checks every team has at least one coder and one non-coder.</li></ul>`,["cap"],null],
+["16:20","16:30","admin","Exit ticket","One thing learned, one open question.",null,[],null]]},
+{n:"Day 2",t:"Building the twin",c:"--l2",slots:[
+["08:30","09:00","activity","Recap with flashcards","Pairs quiz each other with Layer 1 and 2 flashcards; answer day 1 exit-ticket questions.",null,["p1","p2"],null],
+["09:00","10:15","lecture","Session 4 · Traffic flow and calibration","q = k × v, Greenshields, simulation levels, GEH.",`<p><b>Objective:</b> estimate capacity and judge a model with GEH.</p><ol><li>Slides L2 6–9 (35 min).</li><li><b>Curve fitting</b> (15 min): Layer 2 “Try it” on the Study path; compare fitted capacity with 1,800–2,200 veh/h.</li><li><b>Problems</b> (20 min): Workbook 2 worked problems and exercises 1–2.</li></ol>`,["l2","p2","g2"],null],
+["10:15","10:30","break","Break","",null,[],null],
+["10:30","12:00","lab","Lab 2 · Demand and baselines","Generate demand, run fixed-time and actuated control, read tripinfo.",`<p><b>Objective:</b> produce and interpret baseline results.</p><ol><li>Lab manual Lab 3.</li><li>Expected: about 136 s time loss per trip fixed-time, about 35 s actuated (medium demand).</li><li>Discussion: why is fixed-time so much worse here?</li></ol>`,["lab","res"],["Lab 3 runs and a results table.","Interpret the SUMO Lab results charts: which numbers would a city council care about? Draft the team’s success measures."]],
+["12:00","13:00","break","Lunch and prayer break","",null,[],null],
+["13:00","14:30","lab","Lab 3 · Your first twin with TraCI","Read twin_controller.py; run the twin; vary the look-ahead.",`<p><b>Objective:</b> connect a controller to SUMO and see the sense–estimate–decide–act loop.</p><ol><li>Slides SUMO 1–5 (15 min).</li><li>Lab manual Lab 4: mark the four parts of the code; run with <code>--gui</code>; change <code>HORIZON</code>.</li><li>Record time loss and stops for each setting.</li></ol>`,["ls","lab","build"],["Lab 4 with code changes.","Walk through twin_controller.py with the facilitator in plain language; write the safety rules a city would demand (minimum green, fallback)."]],
+["14:30","14:45","break","Break","",null,[],null],
+["14:45","15:45","lab","Lab 4 · Putting a camera on SUMO","Run the camera-fed twin; measure detection rate and its effect.",`<p><b>Objective:</b> see how sensing quality changes a twin’s value.</p><ol><li>Slides SUMO 6–7.</li><li>Lab manual Lab 5: run <code>twin_camera</code>; change detection probability and noise.</li><li>Compare with the Camera twin section of the SUMO Lab.</li></ol>`,["ls","lab","cam"],["Lab 5.","Camera siting exercise: on a printed junction plan, place cameras to cover all approaches for 100 m and list privacy measures."]],
+["15:45","16:20","lecture","Session 5 · Real time, rollout, governance, software","Keeping a twin current; the seven-step rollout; choosing software stacks.",`<ol><li>Slides L2 10–12 (20 min).</li><li>Software guide walk-through (15 min): each team opens the implementation type closest to its brief and marks required tools.</li></ol>`,["l2","sw"],null],
+["16:20","16:30","admin","Exit ticket","One thing learned, one open question.",null,[],null]]},
+{n:"Day 3",t:"Frontier and capstone",c:"--l3",slots:[
+["08:30","09:00","activity","Recap and capstone check-in","Each team states its brief, progress and blockers in 2 minutes.",null,["cap"],null],
+["09:00","10:00","lecture","Session 6 · Research frontier","Maturity ladder, ten gaps, methods, evaluation.",`<ol><li>Slides L3 1–10 (40 min).</li><li><b>Case: one seed can fool you</b> (20 min). While building the SUMO Lab, a twin tuned on one random seed looked better than actuated control; across five fresh seeds it was not. Discuss: what is overfitting, and how do validation seeds protect you?</li></ol>`,["l3","p3","g3"],null],
+["10:00","10:45","lab","Lab 5 · Calibrate and compare fairly","GEH calibration and multi-seed comparison.",`<ol><li>Lab manual Lab 6: run <code>calibrate_geh.py</code> (GEH pass rate before and after).</li><li>Run <code>multi_seed.py</code> on one demand level; compare ranges with differences.</li></ol>`,["lab","cal","res"],["Lab 6.","Research workbook: fill the evaluation plan template for the team’s brief."]],
+["10:45","11:00","break","Break","",null,[],null],
+["11:00","12:00","team","Capstone sprint 1","Teams build, run and gather evidence.",`<ul><li>Facilitators rotate every 15 minutes; ask each team “what is your evidence?”.</li><li>Teams prepare one chart and one table.</li></ul>`,["cap","sumo","sw"],null],
+["12:00","13:00","break","Lunch and prayer break","",null,[],null],
+["13:00","14:15","team","Capstone sprint 2","Finish results; prepare a 10-minute presentation.",null,["cap","g5"],null],
+["14:15","15:30","team","Capstone presentations","10 minutes plus 5 for questions per team; scored with the rubric.",`<ul><li>Two facilitators score independently and average.</li><li>Peers ask one question each about evidence or deployment.</li></ul>`,["cap"],null],
+["15:30","16:00","lecture","Session 7 · From SUMO to the street","Ten implementation steps and personal action plans.",`<ol><li>Slides SUMO 9–11 and the SUMO-to-street steps (15 min).</li><li><b>Action plan</b> (15 min): each participant writes three actions for the next 90 days.</li></ol>`,["real","g5","ls"],null],
+["16:00","16:30","admin","Post-quiz, feedback and certificates","Repeat the 15-question quiz; feedback form; certificates.",null,[],null]]}
+];
+const $=s=>document.querySelector(s);
+$("#dayBtns").innerHTML=DAYS.map((d,i)=>`<button data-i="${i}" style="--c:var(${d.c})" aria-pressed="${i===0}"><b>${d.n}</b><span>${d.t}</span></button>`).join("");
+$("#days").innerHTML=DAYS.map((d,i)=>`<div class="dayblock agenda" data-i="${i}" ${i?"hidden":""}><h3 style="margin-top:12px">${d.n} · ${d.t}</h3>${d.slots.map(s=>{
+  const [a,b,k,t,sum,plan,links,tr]=s;
+  if(k==="break")return `<div class="slot brk" style="--k:var(--line)"><div class="tm">${a}–${b}</div><div>${t}</div></div>`;
+  return `<div class="slot" style="--k:var(${K[k]})"><div class="tm"><b>${a}</b>to ${b}</div><div><span class="kind">${k}</span><h3>${t}</h3><p>${sum}</p>
+   ${links.length?`<div class="links" style="margin-top:6px">${links.map(x=>`<a href="${L[x][1]}">${L[x][0]}</a>`).join("")}</div>`:""}
+   ${plan||tr?`<details><summary>Facilitator plan</summary><div class="plan">${plan||""}${tr?`<div class="tracks"><div><b>Engineer track</b><p>${tr[0]}</p></div><div><b>Manager track</b><p>${tr[1]}</p></div></div>`:""}</div></details>`:""}</div></div>`}).join("")}</div>`).join("");
+document.querySelectorAll("#dayBtns button").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;
+  document.querySelectorAll("#dayBtns button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+  document.querySelectorAll(".dayblock").forEach(x=>x.hidden=+x.dataset.i!==i);});
+$("#print").onclick=()=>{document.querySelectorAll(".slot details").forEach(d=>d.open=true);window.print();};
+</script>
+</body>
+</html>

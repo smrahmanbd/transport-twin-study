@@ -1,0 +1,84 @@
+/* Shared styles for SUMO Lab, Slides and Study guides.
+   Layout: one centred column with a sticky site bar; colours follow highway guide signs. */
+:root{
+  --bg:#eef1f0; --surface:#ffffff; --sunk:#e3e8e6; --ink:#16201c; --muted:#56645f; --line:#cfd8d4;
+  --l1:#0b6b4c; --l1-soft:#dcefe6; --l2:#1d4ea3; --l2-soft:#dde6f6; --l3:#94500f; --l3-soft:#f4e6d6;
+  --on-acc:#ffffff; --sign:#e8b52a; --good:#1c7a3c; --good-soft:#dcf0e1; --bad:#b3261e; --bad-soft:#f8e0dd;
+  --c-fixed:#7a8682; --c-act:#1d4ea3; --c-twin:#0b6b4c; --c-cam:#b5651d;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --acc:var(--l2); --acc-soft:var(--l2-soft);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1513; --surface:#17201c; --sunk:#1e2925; --ink:#e4ebe8; --muted:#9aaaa4; --line:#2c3833;
+  --l1:#3cbf8a; --l1-soft:#173229; --l2:#78a2f0; --l2-soft:#1a2740; --l3:#e59c55; --l3-soft:#352616;
+  --on-acc:#0d1311; --sign:#f0c445; --good:#5cc97f; --good-soft:#163323; --bad:#ff8a80; --bad-soft:#3a1a18;
+  --c-fixed:#9aa8a3; --c-act:#78a2f0; --c-twin:#3cbf8a; --c-cam:#e59c55; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1513; --surface:#17201c; --sunk:#1e2925; --ink:#e4ebe8; --muted:#9aaaa4; --line:#2c3833;
+  --l1:#3cbf8a; --l1-soft:#173229; --l2:#78a2f0; --l2-soft:#1a2740; --l3:#e59c55; --l3-soft:#352616;
+  --on-acc:#0d1311; --sign:#f0c445; --good:#5cc97f; --good-soft:#163323; --bad:#ff8a80; --bad-soft:#3a1a18;
+  --c-fixed:#9aa8a3; --c-act:#78a2f0; --c-twin:#3cbf8a; --c-cam:#e59c55; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+[hidden]{display:none!important}
+img{max-width:100%}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.3rem,6vw,3.4rem);font-weight:700}
+h2{font-size:2rem;font-weight:700}
+h3{font-size:1.4rem;font-weight:600}
+h4{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--acc)}
+.eyebrow{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.12em;font-size:.85rem;font-weight:600;color:var(--muted)}
+.muted{color:var(--muted)}
+code,.mono{font-family:var(--f-mono);font-size:.88em}
+:focus-visible{outline:3px solid var(--sign);outline-offset:2px}
+button{font:inherit;color:inherit;cursor:pointer}
+
+/* site bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.sitebar{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);border-bottom:1px solid var(--line)}
+.sitebar .in{max-width:1080px;margin:0 auto;display:flex;gap:6px 18px;align-items:center;flex-wrap:wrap;padding-block:10px}
+.sitebar .brand{font-family:var(--f-display);font-weight:700;font-size:1.2rem;text-decoration:none;color:var(--ink);margin-right:auto;display:flex;gap:8px;align-items:center}
+.sitebar .brand i{display:inline-block;width:26px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--l1) 0 33%,var(--l2) 33% 66%,var(--l3) 66%)}
+.sitebar nav{display:flex;gap:4px;flex-wrap:wrap}
+.sitebar nav a{text-decoration:none;color:var(--ink);padding:4px 10px;border-radius:999px;font-size:.95rem}
+.sitebar nav a:hover{background:var(--sunk)}
+.sitebar nav a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+
+/* common blocks */
+.hero{padding-block:30px 6px;display:grid;gap:12px}
+.hero .lede{max-width:66ch;color:var(--muted);font-size:1.08rem}
+section.blk{padding-block:34px 6px;display:grid;gap:16px;scroll-margin-top:70px}
+.blk-head{display:grid;gap:4px}
+.blk-head p{color:var(--muted);max-width:68ch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.panel ul,.panel ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:520px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-display);font-weight:600;font-size:1rem;background:var(--sunk)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:.88rem}
+tr:last-child td{border-bottom:0}
+pre.code{margin:0;font-family:var(--f-mono);font-size:.83rem;line-height:1.5;background:var(--sunk);border-radius:8px;padding:14px;overflow-x:auto;white-space:pre}
+.btn{border:1px solid var(--acc);background:var(--acc);color:var(--on-acc);border-radius:6px;padding:6px 14px;font-weight:700;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--acc)}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:6px 12px;border-right:1px solid var(--line);font-size:.93rem}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.stat{background:var(--bg);border-radius:8px;padding:8px 12px}
+.stat .v{font-family:var(--f-mono);font-weight:600;font-size:1.25rem;font-variant-numeric:tabular-nums}
+.stat .k{font-size:.8rem;color:var(--muted)}
+.note{font-size:.9rem;color:var(--muted)}
+.callout{background:var(--acc-soft);border-left:5px solid var(--sign);border-radius:6px;padding:12px 16px}
+footer.site{padding-block:30px 50px;border-top:1px solid var(--line);margin-top:40px;font-size:.9rem;color:var(--muted)}

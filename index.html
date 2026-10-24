@@ -4,7 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="A three-layer interactive study path on digital twins for transportation: foundations, building and implementing, and the research frontier.">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.sitebar{position:sticky;top:env(safe-area-inset-top,0px);z-index:7;background:var(--bg);border-bottom:1px solid var(--line);margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sitebar .in{max-width:1040px;margin:0 auto;display:flex;gap:6px 18px;align-items:center;flex-wrap:wrap;padding-block:10px}
+.sitebar .brand{font-family:var(--f-display);font-weight:700;font-size:1.2rem;text-decoration:none;color:var(--ink);margin-right:auto;display:flex;gap:8px;align-items:center}
+.sitebar .brand i{display:inline-block;width:26px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--l1) 0 33%,var(--l2) 33% 66%,var(--l3) 66%)}
+.sitebar nav{display:flex;gap:4px;flex-wrap:wrap}
+.sitebar nav a{text-decoration:none;color:var(--ink);padding:4px 10px;border-radius:999px;font-size:.95rem}
+.sitebar nav a:hover{background:var(--sunk)}
+.sitebar nav a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+nav.secnav{top:calc(env(safe-area-inset-top,0px) + 52px)}
+@media (max-width:560px){nav.secnav{position:static}}
+.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;margin-top:6px}
+.more a{display:grid;gap:2px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.more a:hover{border-color:var(--ink)}
+.more a b{font-family:var(--f-display);font-size:1.2rem}
+.more a span{font-size:.88rem;color:var(--muted)}
+</style>
 <title>Transport Twin Study Path</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +65,7 @@ code,.mono{font-family:var(--f-mono);font-size:.88em}
 button{font:inherit;color:inherit;cursor:pointer}
 
 /* hero */
-header.hero{padding-block:36px 8px;display:grid;gap:14px}
+header.hero{padding-block:24px 8px;display:grid;gap:14px}
 .hero p.lede{max-width:62ch;color:var(--muted);font-size:1.08rem}
 .line{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
 .line::before{content:"";position:absolute;left:8%;right:8%;top:23px;height:6px;border-radius:3px;
@@ -220,15 +236,26 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
 
 </head>
 <body>
+<header class="sitebar"><div class="in">
+  <a class="brand" href="index.html"><i></i>Transport Twin Study Path</a>
+  <nav aria-label="Site"><a href="index.html" aria-current="page">Study path</a><a href="workshop.html">Workshop</a><a href="sumo.html">SUMO Lab</a><a href="software.html">Software</a><a href="slides.html">Slides</a><a href="guides.html">Study guides</a></nav>
+</div></header>
 <div class="wrap">
 <header class="hero">
   <span class="eyebrow">Self-study companion · Digital twins for transportation</span>
-  <h1>Transport Twin Study Path</h1>
+  <h1>Learn digital twins, layer by layer</h1>
   <p class="lede">Three layers, one line. Start with the idea, then build one, then find what nobody has solved yet. Every layer has intuition, a study guide, a mind map, something to try, flashcards and a quiz.</p>
   <div class="line" role="group" aria-label="Choose a layer">
     <button class="stop" data-layer="1" style="--c:var(--l1)" aria-pressed="true"><span class="dot">1</span><span class="nm">Foundations</span><span class="sub">What a twin is and why transport needs one</span></button>
     <button class="stop" data-layer="2" style="--c:var(--l2)" aria-pressed="false"><span class="dot">2</span><span class="nm">Build &amp; implement</span><span class="sub">Data, models, software and calibration</span></button>
     <button class="stop" data-layer="3" style="--c:var(--l3)" aria-pressed="false"><span class="dot">3</span><span class="nm">Research frontier</span><span class="sub">Gaps, possibilities and research design</span></button>
+  </div>
+  <div class="more">
+    <a href="workshop.html"><b>3-day workshop</b><span>Agenda, facilitator plans, labs and capstone</span></a>
+    <a href="sumo.html"><b>SUMO Lab</b><span>Replay real SUMO runs, a camera-fed twin and the build steps</span></a>
+    <a href="software.html"><b>Software guide</b><span>Required software for each type of transport twin</span></a>
+    <a href="slides.html"><b>Slide decks</b><span>Four presentations with speaker notes</span></a>
+    <a href="guides.html"><b>Study guides</b><span>Printable workbooks, lab manual and cheat sheet</span></a>
   </div>
 </header>
 
@@ -346,7 +373,21 @@ const LAYERS = {
     ["An adaptive traffic signal twin works mainly on which time scale?",["Seconds to minutes","Days to weeks","Months","Years"],0,"Signal control reacts to queues as they form, so updates are needed in seconds to minutes."],
     ["Who first described the digital twin concept for product lifecycle management?",["Michael Grieves","Alan Turing","Greenshields","Kritzinger"],0,"Grieves presented the idea in 2002 at the University of Michigan."],
     ["In the bus bunching example, which step turns a shadow into a twin?",["Collecting GPS every 30 seconds","Predicting bunching four stops ahead","Sending the hold instruction to the bus automatically","Showing buses on a map"],2,"Automatic action back on the real system closes the loop."],
-    ["Why decide the use case before buying sensors or software?",["Vendors require it","It sets which data, model detail and update speed you need","It makes the 3D model prettier","It is required by law"],1,"The decision and its time scale drive every other design choice."]
+    ["Why decide the use case before buying sensors or software?",["Vendors require it","It sets which data, model detail and update speed you need","It makes the 3D model prettier","It is required by law"],1,"The decision and its time scale drive every other design choice."],
+    ["Which data-flow pattern defines a full digital twin?", ["Manual in both directions", "Automatic in, manual out", "Automatic in both directions", "Manual in, automatic out"], 2, "Kritzinger et al. (2018): only automatic flows both ways make a twin."],
+    ["NASA’s 2012 definition speaks of an “as-built” system. What does that stress?", ["The design drawings", "The specific system as actually built, with its own history", "Any system of the same type", "A system still being planned"], 1, "A twin mirrors one real instance, including its own wear and history."],
+    ["A bridge model updated once a year from inspection reports is a:", ["Digital model", "Digital shadow", "Digital twin", "Federated twin"], 0, "Data enters by hand once a year and nothing flows back automatically."],
+    ["A live traffic dashboard mainly answers which of the five questions?", ["What should we do?", "What if we try X?", "What happens next?", "What is happening now?"], 3, "Monitoring is the first question; a full twin goes all the way to acting."],
+    ["Which time scale best fits pavement resurfacing decisions?", ["Seconds", "Minutes", "Weeks to years", "Milliseconds"], 2, "Pavement deteriorates slowly; decisions are planned over weeks to years."],
+    ["Which is an example of the feedback path in a transport twin?", ["A camera sending video to the platform", "A new signal timing plan sent to the controllers", "Storing detector counts in a database", "Drawing the network in 3D"], 1, "Feedback means decisions going back to the physical system."],
+    ["The UK principles for a national digital twin, published in 2018, are the:", ["Gemini Principles", "Turing Principles", "Smart City Charter", "Delft Principles"], 0, "Published by the Centre for Digital Built Britain, grouped under purpose, trust and function."],
+    ["Which layer stores, cleans and links data in space and time?", ["Physical", "Sensing", "Data platform", "Applications"], 2, "The data platform sits between sensing and models."],
+    ["What does “twin-washing” mean?", ["Cleaning sensor data", "Calling a model or shadow a digital twin", "Duplicating a model for backup", "Washing camera lenses"], 1, "Label inflation is common; check the actual data flows."],
+    ["Which makes transport twins harder than many factory twins?", ["Transport has no data", "Human behaviour, many owners and assets lasting decades", "Factories never change", "Transport needs no models"], 1, "Open systems with people and several organisations are harder to mirror and control."],
+    ["In the Layer 1 simulator, why did open-loop control fail?", ["The signal broke", "It acted automatically on a guess of demand, without live data", "It had too much data", "Cars were too fast"], 1, "Acting without seeing reality is not a twin; it can make things worse."],
+    ["Fidelity of a twin is best judged:", ["By how realistic the 3D looks", "Against the decision it must support", "By the number of sensors", "By the price of the software"], 1, "Enough fidelity for the decision is the goal, not maximum detail."],
+    ["Which of these is NOT one of the five layers of a transport twin?", ["Physical", "Sensing", "Procurement", "Applications"], 2, "The layers are physical, sensing, data platform, models and applications, plus feedback."],
+    ["A twin for adaptive signals and a twin for bridge maintenance differ most in:", ["Their time scale and data", "Whether they use computers", "Whether they have a physical system", "Nothing; they are the same"], 0, "Seconds versus years, queues versus structural condition."]
   ]
 },
 2:{
@@ -478,7 +519,21 @@ traci.close()</pre>`],
     ["You must model lane changing near a motorway on-ramp. Which level?",["Macroscopic","Mesoscopic","Microscopic","Regional demand model"],2,"Lane changing is a vehicle-level interaction, so microscopic."],
     ["What does TraCI let you do?",["Draw 3D city models","Read and control a running SUMO simulation from code","Convert GTFS to NeTEx","Encrypt detector data"],1,"TraCI is the control interface that links SUMO to your twin logic."],
     ["Which best describes data assimilation?",["Deleting outliers","Combining model predictions with new observations to update the state","Buying more sensors","Converting units"],1,"It is how sparse data plus a model gives a full, current picture."],
-    ["The recommended first deployment stage is:",["Full automatic control on day one","A shadow with a trusted data pipeline and a clear use case","A photorealistic 3D model","Buying a commercial platform"],1,"Prove the data and the use case first, then add models and control."]
+    ["The recommended first deployment stage is:",["Full automatic control on day one","A shadow with a trusted data pipeline and a clear use case","A photorealistic 3D model","Buying a commercial platform"],1,"Prove the data and the use case first, then add models and control."],
+    ["Density is 30 veh/km and speed 60 km/h. What is the flow?", ["90 veh/h", "900 veh/h", "1,800 veh/h", "3,600 veh/h"], 2, "q = k × v = 30 × 60 = 1,800 veh/h."],
+    ["Above critical density, adding more vehicles to a lane will:", ["Raise flow", "Lower flow", "Not change flow", "Raise speed"], 1, "That is the congested branch of the fundamental diagram."],
+    ["UK guidance accepts a model when GEH is below 5 on at least:", ["50% of counted links", "70% of counted links", "85% of counted links", "100% of counted links"], 2, "DMRB and TAG M3.1 use the 85% rule."],
+    ["Why is GEH preferred to a plain percentage error?", ["It is always smaller", "It treats small and large flows fairly", "It needs no counts", "It ignores outliers"], 1, "A 10% error on 100 veh/h matters less than on 2,000 veh/h; GEH reflects that."],
+    ["Which source gives speeds across most of a network without roadside installation?", ["Inductive loops", "Probe GPS (floating car data)", "Radar", "Pneumatic tubes"], 1, "Probe data comes from vehicles and phones; it is usually bought in."],
+    ["Detector occupancy is:", ["The number of lanes", "The share of time a vehicle is over the detector", "The detector’s age", "Average speed"], 1, "Occupancy is a practical proxy for density."],
+    ["Which lightweight publish–subscribe protocol is common for sensors?", ["SMTP", "MQTT", "FTP", "DNS"], 1, "MQTT brokers such as Mosquitto carry small messages reliably."],
+    ["What does PostGIS add to PostgreSQL?", ["Video storage", "Spatial data types and queries", "Machine learning", "Signal control"], 1, "Spatial queries are essential for networks and assets."],
+    ["Which open-source simulator models whole-day travel of individual agents across a city?", ["MATSim", "Vissim", "OpenTrack", "CloudCompare"], 0, "MATSim is agent-based and open source."],
+    ["A twin must decide every 2 s but its loop takes 2.4 s. The best first fix is:", ["Ignore it", "Shorten the look-ahead or use a faster surrogate model", "Add more cameras", "Update less often"], 1, "Cut the slowest step; the decision clock is fixed."],
+    ["Which standard covers BIM for roads, rail and bridges?", ["IFC 4.3", "GTFS", "MQTT", "DATEX II"], 0, "IFC 4.3 extended IFC to infrastructure."],
+    ["A rolling horizon means:", ["Simulating once a year", "Repeatedly simulating the next period from the current state", "Never updating the model", "Rolling back software versions"], 1, "For example every 5 minutes, simulate the next 30."],
+    ["In the rollout, the “human in the loop” stage means:", ["Operators are removed", "The twin recommends and operators decide", "Humans count cars by hand", "The twin controls everything"], 1, "It builds trust and logs evidence before automation."],
+    ["NTCIP 1202 is used to:", ["Exchange transit timetables", "Communicate with traffic signal controllers", "Store 3D city models", "Encrypt video"], 1, "It defines standard objects for actuated signal controllers."]
   ]
 },
 3:{
@@ -580,7 +635,21 @@ traci.close()</pre>`],
     ["Wu et al. (2025) identified which gap for transport infrastructure twins?",["Too many standards","Lack of a framework across the full lifecycle","Too much open data","No 3D models exist"],1,"Research tends to cover single phases rather than the whole lifecycle."],
     ["In a systematic review, studies should be classified by:",["The words in their title","Their actual data flows","The journal’s impact factor","The software they used"],1,"Label inflation is common, so classify by what the system actually does."],
     ["Which dataset is a drone-recorded highway trajectory set?",["GTFS","METR-LA","highD","IFC 4.3"],2,"highD contains trajectories recorded by drone on German highways."],
-    ["A main threat to validity in a before–after field pilot is:",["Too many random seeds","Demand changing between the two periods","Using GEH","Using open-source software"],1,"Changes in demand can be mistaken for the effect of the twin; use control sites or alternating days."]
+    ["A main threat to validity in a before–after field pilot is:",["Too many random seeds","Demand changing between the two periods","Using GEH","Using open-source software"],1,"Changes in demand can be mistaken for the effect of the twin; use control sites or alternating days."],
+    ["A federated digital twin is:", ["One very large twin", "Several organisations’ twins exchanging state and decisions under shared rules", "A twin with no data", "A backup copy"], 1, "Federation links twins across agencies and modes."],
+    ["Physics-informed machine learning in traffic means:", ["Using physics textbooks", "Learning models constrained by laws such as vehicle conservation", "Only using simulation", "Removing data"], 1, "The physics constraint reduces the data needed and avoids impossible predictions."],
+    ["METR-LA and PEMS-BAY are:", ["Bridge datasets", "Highway detector speed benchmarks", "Bus timetables", "3D city models"], 1, "They are standard benchmarks for traffic prediction."],
+    ["NGSIM contains:", ["Vehicle trajectories extracted from video on US highways", "Airport schedules", "Rail track geometry", "Survey answers"], 0, "For example US-101 and I-80 trajectories."],
+    ["Which method builds an artefact and evaluates it with users in iterations?", ["Design science", "Systematic review", "Case study", "Survey"], 0, "Design science research is common for twin prototypes."],
+    ["Which is a safety surrogate measure?", ["Time-to-collision", "Average speed", "Number of lanes", "Fuel price"], 0, "Conflicts are measured instead of waiting for crashes."],
+    ["Andruccioli et al. (2026) found twins for which mode underexplored?", ["Private cars", "Bus-based public transport", "Aircraft", "Bicycles"], 1, "Bus transit twin research is fragmented."],
+    ["Why run a simulation with several random seeds?", ["To make it slower", "Because one seed can favour one controller by chance", "Seeds improve graphics", "It is required by SUMO"], 1, "Report the mean and the range, as the SUMO Lab does."],
+    ["In the SUMO Lab, a twin tuned on one seed did worse on new seeds. This is:", ["Calibration", "Overfitting", "Validation", "Federation"], 1, "Tune on training seeds and report results on held-out seeds."],
+    ["The main benefit of federated learning for transport agencies is:", ["Faster cars", "Learning across agencies without pooling raw personal data", "Cheaper sensors", "No need for models"], 1, "Models travel; raw data stays with its owner."],
+    ["A strong research question names:", ["Only the software", "The decision, the gap and the evidence", "Only the city", "The budget"], 1, "Without all three it is a project description."],
+    ["Usability scores such as SUS measure which evaluation dimension?", ["Fidelity", "Timeliness", "Acceptance", "Robustness"], 2, "Operator trust and usability decide whether a twin gets used."],
+    ["A main threat to validity of a simulation-only study is:", ["Too many charts", "Results depend on calibration quality", "Using Python", "Too few authors"], 1, "Calibrate and validate on separate data, and say so."],
+    ["Why did camera detection fall at high demand in the SUMO Lab?", ["The camera turned off", "Longer queues hide cars behind each other (occlusion)", "Cars drove faster", "The network changed"], 1, "Detection fell from about 84% at low demand to about 56% at high demand."]
   ]
 }
 };
@@ -660,7 +729,11 @@ function renderCards(C){
 }
 
 /* quiz */
-function renderQuiz(Q){
+function renderQuiz(Q0){
+  /* shuffle each question's options so the right answer is not always in the same place */
+  const Q=Q0.map((q,qi)=>{let seed=(qi+1)*9301+q[0].length*49297; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+    const order=q[1].map((_,i)=>i); for(let k=order.length-1;k>0;k--){const r=Math.floor(rnd()*(k+1));[order[k],order[r]]=[order[r],order[k]];}
+    return [q[0],order.map(i=>q[1][i]),order.indexOf(q[2]),q[3]];});
   const el=$("#qz"); let answered=0, right=0;
   el.innerHTML=`<div class="quiz"><div class="qbar"><span class="score" id="qs"></span><button class="btn ghost" id="qr">Reset quiz</button></div>
    ${Q.map((q,qi)=>`<div class="qq" data-q="${qi}"><p class="stem">${qi+1}. ${esc(q[0])}</p><div class="opts">${q[1].map((o,oi)=>`<button class="opt" data-o="${oi}">${esc(o)}</button>`).join("")}</div><p class="why" hidden></p></div>`).join("")}</div>`;
@@ -670,7 +743,7 @@ function renderQuiz(Q){
       $$(".opt",box).forEach(x=>{x.disabled=true; if(+x.dataset.o===q[2]) x.classList.add("right");});
       if(o!==q[2]) b.classList.add("wrong");
       const w=$(".why",box); w.hidden=false; w.innerHTML=`<b>${o===q[2]?"Correct.":"Not quite."}</b> ${esc(q[3])}`; score();});});
-  $("#qr").onclick=()=>renderQuiz(Q); score();
+  $("#qr").onclick=()=>renderQuiz(Q0); score();
 }
 
 /* ---------- WIDGET 1: model / shadow / twin simulator ---------- */
