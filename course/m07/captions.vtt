@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:06.724
+Module seven builds the engine of the twin: a traffic simulation that is calibrated and validated well enough to be trusted.
+
+2
+00:00:07.624 --> 00:00:09.304
+First choose the zoom level.
+
+3
+00:00:09.304 --> 00:00:14.104
+Macroscopic and mesoscopic models move flows or platoons and suit whole regions.
+
+4
+00:00:14.104 --> 00:00:21.004
+Microscopic models simulate every driver and suit corridors, junctions and signals, at the price of speed and data.
+
+5
+00:00:21.904 --> 00:00:27.071
+Inside a microscopic model, car-following rules decide how drivers keep their distance.
+
+6
+00:00:27.071 --> 00:00:30.516
+SUMO's default is the Krauss model, Vissim uses Wiedemann.
+
+7
+00:00:30.516 --> 00:00:33.604
+Lane-changing and route choice complete the picture.
+
+8
+00:00:34.504 --> 00:00:45.784
+In SUMO the workflow is: build the network with netconvert, generate demand and routes, add detectors, run sumo or sumo-gui, and read the outputs such as trip information and detector counts.
+
+9
+00:00:46.684 --> 00:00:50.876
+Calibration adjusts demand and parameters until the model matches counts.
+
+10
+00:00:50.876 --> 00:00:55.642
+A common target is GEH below five on at least eighty-five percent of counted links.
+
+11
+00:00:55.642 --> 00:00:59.088
+Then validate on different days, and check travel times too.
+
+12
+00:00:59.988 --> 00:01:02.018
+Finally, one run is not a result.
+
+13
+00:01:02.018 --> 00:01:03.433
+Simulations are random.
+
+14
+00:01:03.433 --> 00:01:09.032
+Run several seeds, report the mean and the range, and never tune and test on the same seed.
+
+15
+00:01:09.032 --> 00:01:12.354
+In the SUMO lab you will see what happens when you do.
