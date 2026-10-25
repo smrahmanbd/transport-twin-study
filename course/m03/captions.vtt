@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:07.652
+Module three covers static inputs: the geometry and structure of the network that a twin needs before any live data can make sense.
+
+2
+00:00:08.552 --> 00:00:11.154
+Reality capture comes in two families.
+
+3
+00:00:11.154 --> 00:00:17.590
+Laser scanning, from a tripod, a vehicle or an aircraft, measures millions of points directly.
+
+4
+00:00:17.590 --> 00:00:21.903
+Photogrammetry rebuilds 3D shape from overlapping drone photos.
+
+5
+00:00:21.903 --> 00:00:25.190
+Accuracy, cost and coverage decide which to use.
+
+6
+00:00:26.090 --> 00:00:28.325
+Raw point clouds are only the start.
+
+7
+00:00:28.325 --> 00:00:40.372
+They are registered into one coordinate system, classified into road, kerb, vegetation and structures, and then features such as lane edges and signs are extracted into a network or a BIM model.
+
+8
+00:00:41.272 --> 00:00:43.668
+A traffic model needs more than geometry.
+
+9
+00:00:43.668 --> 00:00:52.610
+It needs nodes, links, lanes and the turns allowed between them, the signal programmes, and the demand: how many trips travel between each pair of zones.
+
+10
+00:00:53.510 --> 00:00:56.026
+Open standards keep this data usable.
+
+11
+00:00:56.026 --> 00:01:01.057
+IFC 4.3 extends building information modelling to roads, rail and bridges.
+
+12
+00:01:01.057 --> 00:01:05.205
+CityGML describes city objects at different levels of detail.
+
+13
+00:01:05.205 --> 00:01:09.284
+OpenDRIVE describes lane-level roads for driving simulators.
+
+14
+00:01:10.184 --> 00:01:13.276
+Capture is expensive, so plan it to serve many uses.
+
+15
+00:01:13.276 --> 00:01:19.282
+Agree the coordinate system, the accuracy you need and the output formats before anyone goes on site.
