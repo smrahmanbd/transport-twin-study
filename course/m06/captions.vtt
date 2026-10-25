@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.684
+Module six turns sparse sensor data into a full picture of the network, now and in the near future.
+
+2
+00:00:06.584 --> 00:00:09.675
+Traffic state estimation is like weather forecasting.
+
+3
+00:00:09.675 --> 00:00:13.174
+A few detectors and probe vehicles give sparse observations.
+
+4
+00:00:13.174 --> 00:00:20.348
+A flow model fills the gaps, and a filter, such as a Kalman filter, blends the two into speeds and densities on every link.
+
+5
+00:00:21.248 --> 00:00:23.237
+Prediction comes in two families.
+
+6
+00:00:23.237 --> 00:00:28.179
+Model-based methods use flow physics and explain themselves, but need calibration.
+
+7
+00:00:28.179 --> 00:00:35.412
+Data-driven methods, such as LSTMs and graph neural networks, learn patterns from history but need large clean datasets.
+
+8
+00:00:36.312 --> 00:00:45.460
+Hybrid and physics-informed approaches combine both: a network learns what the physical model gets wrong, or is trained to respect conservation of vehicles.
+
+9
+00:00:45.460 --> 00:00:48.802
+They need less data and produce fewer impossible answers.
+
+10
+00:00:49.702 --> 00:00:50.792
+Evaluate honestly.
+
+11
+00:00:50.792 --> 00:01:00.720
+Report errors by forecast horizon, always compare with simple baselines such as yesterday at the same time, and test on incidents and on months the model never saw.
+
+12
+00:01:01.620 --> 00:01:05.106
+And remember: a forecast is only useful if it arrives in time.
+
+13
+00:01:05.106 --> 00:01:10.110
+The prediction horizon must be longer than the time it takes to compute it and act on it.
