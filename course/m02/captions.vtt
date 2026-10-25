@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:08.820
+Module two is about architecture: how sensors, data, models and decisions fit together, and the design choices that make a twin fast, reliable and safe.
+
+2
+00:00:09.720 --> 00:00:12.306
+A transport twin is a cyber-physical system.
+
+3
+00:00:12.306 --> 00:00:15.009
+Computers and the physical road form one loop.
+
+4
+00:00:15.009 --> 00:00:21.356
+That means timing and safety matter as much as model accuracy: a late decision can be as bad as a wrong one.
+
+5
+00:00:22.256 --> 00:00:31.772
+Most twins can be drawn as layers: the physical system, sensing, a data platform, models, services that turn results into decisions, and interfaces for people.
+
+6
+00:00:31.772 --> 00:00:35.722
+A feedback path runs from the services back to the physical layer.
+
+7
+00:00:36.622 --> 00:00:38.463
+Where should computation run?
+
+8
+00:00:38.463 --> 00:00:44.050
+Video analytics and safety logic belong at the edge, close to the camera and the signal.
+
+9
+00:00:44.050 --> 00:00:49.193
+History, heavy simulation and city-wide analytics fit the cloud or a data centre.
+
+10
+00:00:49.193 --> 00:00:50.780
+Most real twins use both.
+
+11
+00:00:51.680 --> 00:00:58.305
+No single simulator does everything, so twins couple several, for example SUMO for traffic and CARLA for vehicles.
+
+12
+00:00:58.305 --> 00:01:04.058
+The digital thread is the record that links design, construction and operating data for each asset.
+
+13
+00:01:04.958 --> 00:01:15.191
+Before choosing products, answer five questions: what is the purpose, how much fidelity is needed, how often must it update, how much delay is acceptable, and who owns each layer.
+
+14
+00:01:15.191 --> 00:01:17.592
+The architecture follows from the answers.
