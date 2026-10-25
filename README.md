@@ -6,7 +6,7 @@ Live site: https://smrahmanbd.github.io/transport-twin-study/
 | Page | What it has |
 |------|-------------|
 | `index.html` – Study path | Three layers (foundations, build and implement, research frontier), each with intuition, a study guide, a mind map, an exercise, flashcards and a quiz |
-| `workshop.html` – Workshop | A full 3-day workshop: timed agenda, facilitator plans, engineer and manager tracks, capstone briefs and rubric, setup, assessment |
+| `course.html` – Course | 12 modules, each with a short narrated video (with captions), an audio lesson with transcript, a slide deck (PDF), detailed reading, key terms, a quiz and an activity |
 | `software.html` – Software guide | Required software for eight types of transport twin, layer by layer, open-source and commercial |
 | `sumo.html` – SUMO Lab | Replays of real Eclipse SUMO runs on a three-signal corridor: fixed-time, actuated, a TraCI digital twin, and a twin fed only by virtual cameras; results over five held-out seeds; calibration with GEH; implementation steps from SUMO to a real camera twin |
 | `slides.html` – Slides | Four presentation decks with speaker notes (print to PDF) |

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Course · Digital Twins for Transportation</title>
+<meta name="description" content="A 12-module online course on digital twins for transportation with short narrated videos, audio lessons, slide decks, detailed readings, quizzes and hands-on SUMO activities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.progress{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--good);width:0}
+.parts{display:grid;gap:18px}
+.part h3{margin-bottom:8px}
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px}
+.mod{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:start;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px;text-decoration:none;color:var(--ink)}
+.mod:hover{border-color:var(--pc)}
+.mod img{width:96px;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block;background:var(--sunk)}
+.mod b{font-family:var(--f-display);font-size:1.12rem;line-height:1.15;display:block}
+.mod span{font-size:.82rem;color:var(--muted)}
+.mod .done{color:var(--good);font-weight:700}
+/* module view */
+.mhead{display:grid;gap:8px;border-left:8px solid var(--pc);padding-left:16px}
+.mhead h1{font-size:clamp(2rem,5vw,3rem)}
+.goals{margin:0;padding-left:1.2em;display:grid;gap:3px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:4;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line)}
+@media (max-width:600px){.tabs{position:static}}
+.tabs a{text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:.92rem}
+.tabs a:hover{border-color:var(--pc)}
+.media{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:860px){.media{grid-template-columns:1fr}}
+video{width:100%;border-radius:10px;background:#000;display:block;aspect-ratio:16/9}
+audio{width:100%}
+.transcript{max-height:260px;overflow:auto;font-size:.94rem;background:var(--bg);border-radius:8px;padding:10px 14px;white-space:pre-line}
+.viewer{display:grid;gap:8px}
+.viewer img{width:100%;border-radius:10px;border:1px solid var(--line);display:block;aspect-ratio:16/9;background:var(--sunk)}
+.vctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.vctl .count{font-family:var(--f-mono);color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.reading{display:grid;gap:12px}
+.reading h3{color:var(--pc);margin-top:8px}
+.reading p,.reading li{max-width:74ch}
+.reading ul,.reading ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.reading .formula{font-family:var(--f-mono);background:var(--sunk);border-radius:6px;padding:10px 14px;overflow-x:auto}
+.reading table{min-width:540px}
+.reading .tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+dl.terms{display:grid;grid-template-columns:minmax(150px,max-content) 1fr;gap:6px 16px;margin:0}
+dl.terms dt{font-weight:700}
+dl.terms dd{margin:0}
+@media (max-width:560px){dl.terms{grid-template-columns:1fr}dl.terms dd{margin-bottom:6px}}
+.qq{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:8px}
+.qq .stem{font-weight:700}
+.opts{display:grid;gap:6px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 12px}
+.opt:hover:not(:disabled){border-color:var(--pc)}
+.opt.right{background:var(--good-soft);border-color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.why{font-size:.93rem;border-left:4px solid var(--sign);padding-left:10px}
+.pager{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;padding-block:24px;border-top:1px solid var(--line);margin-top:24px}
+.src{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:.93rem}
+.dl{display:flex;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<header class="sitebar"><div class="in">
+  <a class="brand" href="index.html"><i></i>Transport Twin Study Path</a>
+  <nav aria-label="Site"><a href="index.html">Study path</a><a href="course.html" aria-current="page">Course</a><a href="sumo.html">SUMO Lab</a><a href="software.html">Software</a><a href="slides.html">Slides</a><a href="guides.html">Study guides</a></nav>
+</div></header>
+<div class="wrap" id="app"><p class="note" style="padding:40px 0">Loading the course…</p></div>
+<footer class="site wrap">Narration is synthetic speech (Piper TTS). Videos use the course slides and real SUMO Lab runs. Each module takes about an hour including activities.</footer>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const PC={"Foundations":"--l1","Building the twin":"--l2","Applications":"--l3"};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mmss=s=>`${Math.floor(s/60)}:${String(Math.round(s%60)).padStart(2,"0")}`;
+let C=[];
+const done=()=>{try{return JSON.parse(localStorage.getItem("ttsp-done")||"[]")}catch(e){return []}};
+const setDone=(id,v)=>{try{const d=new Set(done());v?d.add(id):d.delete(id);localStorage.setItem("ttsp-done",JSON.stringify([...d]))}catch(e){}};
+const mid=m=>"m"+String(m.id).padStart(2,"0");
+
+function home(){
+  const d=new Set(done()), vid=C.reduce((a,m)=>a+(m.media?m.media.video_s:0),0), aud=C.reduce((a,m)=>a+(m.media?m.media.audio_s:0),0);
+  const parts=[...new Set(C.map(m=>m.part))];
+  $("#app").innerHTML=`<section class="hero"><span class="eyebrow">Online course · 12 modules · self-paced</span><h1>Digital Twins for Transportation</h1>
+  <p class="lede">A complete course from first principles to a working camera-fed twin in SUMO. Every module has a short narrated video, an audio lesson, a slide deck, a detailed reading, key terms, a quick check and a hands-on activity.</p>
+  <div class="kpis"><div class="stat"><div class="v">12</div><div class="k">modules</div></div><div class="stat"><div class="v">${Math.round(vid/60)} min</div><div class="k">of short videos</div></div><div class="stat"><div class="v">${Math.round(aud/60)} min</div><div class="k">of audio lessons</div></div><div class="stat"><div class="v">${C.reduce((a,m)=>a+m.slides.length,0)}</div><div class="k">slides in 12 decks</div></div><div class="stat"><div class="v">${C.length*5}</div><div class="k">quiz questions</div></div></div>
+  <div style="display:grid;gap:6px"><span class="note">Your progress: ${d.size} of ${C.length} modules completed (saved in this browser)</span><div class="progress"><i style="width:${100*d.size/C.length}%"></i></div></div>
+  <div><a class="btn" href="#m${(C.find(m=>!d.has(m.id))||C[0]).id}">${d.size?"Continue":"Start module 1"}</a></div></section>
+  <section class="blk"><div class="blk-head"><span class="eyebrow">Course map</span><h2>Three parts, twelve modules</h2><p>Follow them in order, or jump to what you need. Each module takes about an hour with its activity.</p></div>
+  <div class="parts">${parts.map(p=>`<div class="part"><h3 style="color:var(${PC[p]})">${p}</h3><div class="mods">${C.filter(m=>m.part===p).map(m=>`<a class="mod" href="#m${m.id}" style="--pc:var(${PC[m.part]})"><img src="course/${mid(m)}/poster.jpg" alt="" loading="lazy"><div><b>${m.id}. ${esc(m.title)}</b><span>${m.media?mmss(m.media.video_s)+" video · "+mmss(m.media.audio_s)+" audio · ":""}${m.minutes} min ${d.has(m.id)?'· <span class="done">✓ done</span>':""}</span></div></a>`).join("")}</div></div>`).join("")}</div></section>
+  <section class="blk"><div class="blk-head"><span class="eyebrow">How to use it</span><h2>A good rhythm for each module</h2></div>
+  <div class="grid2"><div class="panel"><ol><li>Watch the video (1–2 minutes).</li><li>Read the module text and the key terms.</li><li>Listen to the audio lesson on the way to work.</li><li>Do the quick check, then the activity.</li><li>Use the slides to revise or to teach others.</li></ol></div>
+  <div class="panel"><p>The course follows the integrated 12-week syllabus. The <a href="index.html">Study path</a> gives intuition and practice, the <a href="sumo.html">SUMO Lab</a> the hands-on simulation, and the <a href="guides.html">Study guides</a> printable workbooks.</p></div></div></section>`;
+  document.title="Course · Digital Twins for Transportation";
+  window.scrollTo(0,0);
+}
+
+function shuffleQ(q,qi){let seed=(qi+3)*7919+q[0].length*104729;const r=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const o=q[1].map((_,i)=>i);for(let k=o.length-1;k>0;k--){const j=Math.floor(r()*(k+1));[o[k],o[j]]=[o[j],o[k]]}return [q[0],o.map(i=>q[1][i]),o.indexOf(q[2]),q[3]];}
+
+function module(id){
+  const i=C.findIndex(m=>m.id===id); const m=C[i]; if(!m){home();return;}
+  const p=`course/${mid(m)}`, pc=PC[m.part], md=m.media||{slides:[]}, isDone=new Set(done()).has(m.id);
+  const reading=m.reading.replace(/<table>/g,'<div class="tw"><table>').replace(/<\/table>/g,"</table></div>");
+  $("#app").innerHTML=`<div style="--pc:var(${pc});display:grid;gap:4px">
+  <section class="hero"><a href="#" class="note">← All modules</a><div class="mhead"><span class="eyebrow">${m.part} · Module ${m.id} of ${C.length} · about ${m.minutes} min</span><h1>${esc(m.title)}</h1>
+   <div><span class="eyebrow">You will be able to</span><ul class="goals">${m.goals.map(g=>`<li>${esc(g)}</li>`).join("")}</ul></div></div></section>
+  <nav class="tabs" aria-label="Module sections"><a href="#m${m.id}" data-s="watch">Watch</a><a href="#m${m.id}" data-s="listen">Listen</a><a href="#m${m.id}" data-s="slides">Slides</a><a href="#m${m.id}" data-s="read">Read</a><a href="#m${m.id}" data-s="terms">Key terms</a><a href="#m${m.id}" data-s="check">Quick check</a><a href="#m${m.id}" data-s="practice">Practice</a></nav>
+  <section class="blk" id="watch"><div class="blk-head"><span class="eyebrow">Watch · ${md.video_s?mmss(md.video_s):""}</span><h2>Video</h2></div>
+   <div class="media"><video controls preload="metadata" poster="${p}/poster.jpg"><source src="${p}/video.mp4" type="video/mp4"><track kind="captions" src="${p}/captions.vtt" srclang="en" label="English" default></video>
+   <div class="panel"><h3>In this video</h3><ol>${m.slides.map(s=>`<li>${esc(s.t)}</li>`).join("")}</ol><p class="note">Captions are on by default; use the CC button to hide them.</p></div></div></section>
+  <section class="blk" id="listen"><div class="blk-head"><span class="eyebrow">Listen · ${md.audio_s?mmss(md.audio_s):""}</span><h2>Audio lesson: ${esc(m.audio.title)}</h2><p>A short spoken lesson that looks at the module from a different angle. Good for a commute.</p></div>
+   <div class="panel"><audio controls preload="none" src="${p}/audio.mp3"></audio><details><summary>Transcript</summary><div class="transcript">${esc(m.audio.script)}</div></details></div></section>
+  <section class="blk" id="slides"><div class="blk-head"><span class="eyebrow">Present</span><h2>Slide deck</h2><p>Use the arrows or your keyboard. Speaker notes are the video narration.</p></div>
+   <div class="viewer panel"><img id="simg" alt="Slide"><div class="vctl"><button class="btn ghost" id="sprev">Previous</button><button class="btn" id="snext">Next</button><a class="btn ghost" href="${p}/slides.pdf" download>Download PDF</a><span class="count" id="scount"></span></div><p class="note" id="snotes"></p></div></section>
+  <section class="blk" id="read"><div class="blk-head"><span class="eyebrow">Read</span><h2>Module notes</h2></div><article class="panel reading">${reading}</article></section>
+  <section class="blk" id="terms"><div class="blk-head"><span class="eyebrow">Key terms</span><h2>Words to know</h2></div><div class="panel"><dl class="terms">${m.terms.map(t=>`<dt>${esc(t[0])}</dt><dd>${esc(t[1])}</dd>`).join("")}</dl></div></section>
+  <section class="blk" id="check"><div class="blk-head"><span class="eyebrow">Quick check</span><h2>Five questions</h2><p class="score" id="qs"></p></div><div style="display:grid;gap:10px" id="qz"></div></section>
+  <section class="blk" id="practice"><div class="blk-head"><span class="eyebrow">Practice</span><h2>${esc(m.activity.title)}</h2></div>
+   <div class="panel"><p>${esc(m.activity.text)}</p><p><a class="btn" href="${m.activity.link}" ${m.activity.link.startsWith("http")?'target="_blank" rel="noopener"':""}>${esc(m.activity.label)}</a></p></div>
+   <div class="panel"><h3>Sources and further reading</h3><ul class="src">${m.sources.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a></li>`).join("")}</ul>
+   <div class="dl"><a class="btn ghost" href="${p}/video.mp4" download>Download video</a><a class="btn ghost" href="${p}/audio.mp3" download>Download audio</a><a class="btn ghost" href="${p}/slides.pdf" download>Download slides</a></div></div></section>
+  <div class="pager">${i>0?`<a class="btn ghost" href="#m${C[i-1].id}">← Module ${C[i-1].id}</a>`:"<span></span>"}
+   <button class="btn ${isDone?"ghost":""}" id="mark">${isDone?"✓ Completed (undo)":"Mark module complete"}</button>
+   ${i<C.length-1?`<a class="btn" href="#m${C[i+1].id}">Module ${C[i+1].id} →</a>`:`<a class="btn" href="#">Back to course map</a>`}</div></div>`;
+  document.title=`Module ${m.id}: ${m.title} · Course`;
+  // tabs scroll
+  $$(".tabs a").forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById(a.dataset.s).scrollIntoView({behavior:"smooth"})});
+  // slides
+  let k=0; const S=md.slides||[];
+  const show=()=>{ if(!S.length)return; $("#simg").src=S[k].img; $("#simg").alt=`Slide ${k+1}: ${S[k].title}`; $("#scount").textContent=`${k+1} / ${S.length}`; $("#snotes").textContent=S[k].notes; $("#sprev").disabled=k===0; $("#snext").disabled=k===S.length-1; };
+  $("#sprev").onclick=()=>{k=Math.max(0,k-1);show()}; $("#snext").onclick=()=>{k=Math.min(S.length-1,k+1);show()};
+  document.onkeydown=e=>{ if(e.target.closest("input,textarea,video,audio"))return; const r=$("#slides").getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight)return;
+    if(e.key==="ArrowRight"){k=Math.min(S.length-1,k+1);show()} if(e.key==="ArrowLeft"){k=Math.max(0,k-1);show()} };
+  show();
+  // quiz
+  const Q=m.quiz.map(shuffleQ); let ans=0,right=0; const sc=()=>$("#qs").textContent=`Score ${right} / ${ans} answered`;
+  $("#qz").innerHTML=Q.map((q,qi)=>`<div class="qq" data-q="${qi}"><p class="stem">${qi+1}. ${esc(q[0])}</p><div class="opts">${q[1].map((o,oi)=>`<button class="opt" data-o="${oi}">${esc(o)}</button>`).join("")}</div><p class="why" hidden></p></div>`).join("");
+  $$(".qq").forEach(box=>{const q=Q[+box.dataset.q]; box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const o=+b.dataset.o; ans++; if(o===q[2])right++;
+    box.querySelectorAll(".opt").forEach(x=>{x.disabled=true; if(+x.dataset.o===q[2])x.classList.add("right")}); if(o!==q[2])b.classList.add("wrong");
+    const w=box.querySelector(".why"); w.hidden=false; w.innerHTML=`<b>${o===q[2]?"Correct.":"Not quite."}</b> ${esc(q[3])}`; sc();
+    if(ans===Q.length&&right>=4&&!new Set(done()).has(m.id)){setDone(m.id,true); $("#mark").textContent="✓ Completed (undo)"; $("#mark").classList.add("ghost");}})}); sc();
+  $("#mark").onclick=()=>{const now=!new Set(done()).has(m.id); setDone(m.id,now); $("#mark").textContent=now?"✓ Completed (undo)":"Mark module complete"; $("#mark").classList.toggle("ghost",now);};
+  window.scrollTo(0,0);
+}
+
+function route(){const h=(location.hash||"").slice(1); const n=/^m(\d+)$/.exec(h); n?module(+n[1]):home();}
+fetch("course/course.json").then(r=>r.json()).then(d=>{C=d;route();window.addEventListener("hashchange",route);}).catch(()=>{$("#app").innerHTML='<p class="note" style="padding:40px 0">Could not load the course. Open this page from the website.</p>';});
+</script>
+</body>
+</html>
