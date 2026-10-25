@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:08.788
+Module eleven widens the view to the city: emissions and air quality, city-scale twins, and the interfaces that turn twin outputs into decisions.
+
+2
+00:00:09.688 --> 00:00:12.455
+A traffic twin can estimate environmental impact.
+
+3
+00:00:12.455 --> 00:00:20.642
+Speeds and vehicle mixes feed an emission model, a dispersion model spreads pollutants through the streets, and exposure shows who breathes them.
+
+4
+00:00:21.542 --> 00:00:27.619
+Emission factors come from models such as HBEFA and COPERT in Europe and MOVES in the United States.
+
+5
+00:00:27.619 --> 00:00:30.414
+SUMO includes emission classes based on HBEFA.
+
+6
+00:00:30.414 --> 00:00:32.906
+Always compare with air-quality monitors.
+
+7
+00:00:33.806 --> 00:00:38.567
+City-scale twins combine 3D city models with live data from many sectors.
+
+8
+00:00:38.567 --> 00:00:43.784
+Open platforms such as FIWARE and Snap4City, and cloud twin services, host them.
+
+9
+00:00:43.784 --> 00:00:46.914
+Singapore and Helsinki are often cited examples.
+
+10
+00:00:47.814 --> 00:00:50.182
+Interfaces decide whether a twin is used.
+
+11
+00:00:50.182 --> 00:00:57.056
+Put the summary first and the detail on demand, show uncertainty, and always explain why the twin recommends an action.
+
+12
+00:00:57.956 --> 00:01:00.183
+A twin that nobody uses is just a model.
+
+13
+00:01:00.183 --> 00:01:05.918
+Design its interfaces for each audience: the operator in the control room, the planner, and the public.
