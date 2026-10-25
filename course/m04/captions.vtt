@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:08.148
+Module four is about dynamic inputs: the sensors and data feeds that keep a twin in step with reality, and the standards that let systems share them.
+
+2
+00:00:09.048 --> 00:00:10.860
+Sensors fall into two groups.
+
+3
+00:00:10.860 --> 00:00:15.984
+Point sensors, like loops, radar and cameras, are accurate but only see one place.
+
+4
+00:00:15.984 --> 00:00:22.796
+Network sources, like probe GPS and bus locations, cover the whole city but only sample some of the vehicles.
+
+5
+00:00:23.696 --> 00:00:25.583
+Every source has a blind spot.
+
+6
+00:00:25.583 --> 00:00:26.841
+Loops see one point.
+
+7
+00:00:26.841 --> 00:00:30.427
+Cameras struggle with darkness, rain and hidden vehicles.
+
+8
+00:00:30.427 --> 00:00:33.258
+Probe data is biased toward certain vehicles.
+
+9
+00:00:33.258 --> 00:00:35.901
+Connected-vehicle messages are still rare.
+
+10
+00:00:35.901 --> 00:00:38.354
+That is why twins fuse several sources.
+
+11
+00:00:39.254 --> 00:00:44.547
+Judge every feed on four dimensions: completeness, accuracy, timeliness and consistency.
+
+12
+00:00:44.547 --> 00:00:51.584
+A feed that is accurate but arrives five minutes late is useless for signal control, and perfectly fine for planning.
+
+13
+00:00:52.484 --> 00:00:56.667
+Standards let systems share data without custom code.
+
+14
+00:00:56.667 --> 00:01:01.087
+GTFS-Realtime and SIRI carry live public transport data.
+
+15
+00:01:01.087 --> 00:01:05.191
+DATEX II carries road traffic information in Europe.
+
+16
+00:01:05.191 --> 00:01:08.743
+SAE J2735 defines connected-vehicle messages.
+
+17
+00:01:08.743 --> 00:01:11.900
+NGSI-LD is used by smart city platforms.
+
+18
+00:01:12.800 --> 00:01:16.985
+The goal is fusion: combining sources so that each covers another's blind spot.
+
+19
+00:01:16.985 --> 00:01:22.442
+A camera that sees the queue plus a loop that counts reliably gives a better picture than either alone.
