@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.322
+Welcome to module one.
+
+2
+00:00:01.322 --> 00:00:10.430
+In the next two minutes we will define a digital twin, separate it from things that only look like one, and see why transport is both a natural fit and a hard case.
+
+3
+00:00:11.330 --> 00:00:17.749
+A digital twin has three parts: a physical system, a virtual replica of it, and the connection between them.
+
+4
+00:00:17.749 --> 00:00:21.137
+Data flows in from the road, and decisions flow back out.
+
+5
+00:00:21.137 --> 00:00:24.406
+Without that two-way connection, you only have a model.
+
+6
+00:00:25.306 --> 00:00:28.284
+Kritzinger and colleagues give a simple test.
+
+7
+00:00:28.284 --> 00:00:30.600
+A model has no automatic data flow.
+
+8
+00:00:30.600 --> 00:00:34.437
+A shadow receives live data, but people act on it by hand.
+
+9
+00:00:34.437 --> 00:00:39.400
+Only when data flows automatically in both directions do we call it a twin.
+
+10
+00:00:40.300 --> 00:00:42.913
+A dashboard answers the first question.
+
+11
+00:00:42.913 --> 00:00:49.278
+A full twin climbs all five: it monitors, diagnoses, predicts, tests options, and finally acts.
+
+12
+00:00:49.278 --> 00:00:52.896
+Each step needs more trust in the data and the models.
+
+13
+00:00:53.796 --> 00:00:55.778
+Transport is harder than a factory.
+
+14
+00:00:55.778 --> 00:01:04.782
+The system is open, full of human behaviour, spread across many owners, and its decisions run from a signal change in seconds to a new metro line over decades.
+
+15
+00:01:05.682 --> 00:01:08.105
+So every good twin starts with one decision.
+
+16
+00:01:08.105 --> 00:01:14.273
+The decision sets the clock, and the clock sets which data, which model detail, and which update speed you need.
+
+17
+00:01:14.273 --> 00:01:16.806
+That is the thread for the rest of the course.
