@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:08.996
+Module nine moves from traffic to the infrastructure itself: twins of pavements, bridges and tunnels that help decide when to inspect and repair.
+
+2
+00:00:09.896 --> 00:00:16.705
+An asset twin combines geometry from surveys and BIM, data from sensors and inspections, and a condition history.
+
+3
+00:00:16.705 --> 00:00:22.370
+A deterioration model predicts the future condition, and the twin turns that into work orders.
+
+4
+00:00:23.270 --> 00:00:27.041
+Pavement condition is measured as roughness, cracking and rutting.
+
+5
+00:00:27.041 --> 00:00:31.212
+Bridges are monitored with strain gauges, accelerometers and inspections.
+
+6
+00:00:31.212 --> 00:00:35.498
+Drones and computer vision now find cracks faster than walking inspections.
+
+7
+00:00:36.398 --> 00:00:41.290
+To predict deterioration, network-level twins use statistical and Markov models.
+
+8
+00:00:41.290 --> 00:00:43.736
+Pavement design uses mechanistic models.
+
+9
+00:00:43.736 --> 00:00:50.402
+For a critical bridge, a finite-element model can be updated with measured vibrations to track its stiffness.
+
+10
+00:00:51.302 --> 00:00:56.220
+Without a twin, agencies inspect on fixed cycles and repair when damage is visible.
+
+11
+00:00:56.220 --> 00:01:03.152
+With a twin, inspection is risk-based and repair can be timed at the lowest lifecycle cost, before expensive failure.
+
+12
+00:01:04.052 --> 00:01:13.530
+The asset management standard ISO 55000 frames all of this: decisions about assets should be linked to value, risk and cost over the whole lifecycle.
+
+13
+00:01:13.530 --> 00:01:15.502
+The twin provides the evidence.
