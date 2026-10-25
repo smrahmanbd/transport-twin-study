@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:07.508
+Module five looks at the data platform: how a twin moves, stores and shares data, and how it stays interoperable with other systems.
+
+2
+00:00:08.408 --> 00:00:21.720
+A typical path: sensors publish messages to a broker such as MQTT or Kafka, a stream processor cleans and aggregates them, results land in time-series and spatial databases, and APIs expose them to models and users.
+
+3
+00:00:22.620 --> 00:00:26.393
+Streaming handles data as it arrives and keeps the live state.
+
+4
+00:00:26.393 --> 00:00:30.897
+Batch processing runs over history, for calibration, learning and reports.
+
+5
+00:00:30.897 --> 00:00:33.392
+Twins need both, connected but separated.
+
+6
+00:00:34.292 --> 00:00:47.508
+Use the right store for each job: a time-series database for sensor history, a spatial database for networks and assets, a context broker or twin graph for the live state of each object, and cheap object storage for the raw archive.
+
+7
+00:00:48.408 --> 00:00:50.497
+Interoperability has four levels.
+
+8
+00:00:50.497 --> 00:00:52.712
+Technical: can the systems connect.
+
+9
+00:00:52.712 --> 00:00:55.054
+Syntactic: can they parse the format.
+
+10
+00:00:55.054 --> 00:00:59.104
+Semantic: does a 'stop' or a 'link' mean the same thing to both.
+
+11
+00:00:59.104 --> 00:01:01.763
+Organisational: are they allowed to share.
+
+12
+00:01:01.763 --> 00:01:03.978
+Most projects fail at the last two.
+
+13
+00:01:04.878 --> 00:01:06.909
+Design for federation from the start.
+
+14
+00:01:06.909 --> 00:01:15.528
+Keep ownership of your data, expose it through open APIs and shared vocabularies, and your twin can connect to neighbours' twins later without being rebuilt.
