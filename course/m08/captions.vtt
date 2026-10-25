@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.248
+Module eight puts everything together.
+
+2
+00:00:02.248 --> 00:00:07.054
+We connect a twin controller to SUMO, give it a camera, and measure what it achieves.
+
+3
+00:00:07.954 --> 00:00:17.113
+Every simulated second the twin senses the road, estimates queues and arriving vehicles, decides whether to keep or end each green, and acts through TraCI.
+
+4
+00:00:17.113 --> 00:00:19.772
+Then SUMO moves the traffic forward one step.
+
+5
+00:00:20.672 --> 00:00:22.859
+Here is the corridor at medium demand.
+
+6
+00:00:22.859 --> 00:00:24.989
+Dots are vehicles, coloured by speed.
+
+7
+00:00:24.989 --> 00:00:28.385
+The orange circles are the cameras' range at each junction.
+
+8
+00:00:28.385 --> 00:00:33.278
+Watch the queues on the side streets form and clear as the twin switches the signals.
+
+9
+00:00:34.178 --> 00:00:45.890
+The virtual camera has the flaws of real computer vision: limited range, missed detections that grow with distance, cars hidden behind other cars, position noise, and guessing which lane a car is in.
+
+10
+00:00:46.790 --> 00:00:56.435
+On five seeds the twin never saw, both twins beat SUMO's actuated signals at high demand, about ninety-five seconds of lost time per trip against one hundred and one.
+
+11
+00:00:56.435 --> 00:01:00.096
+At low and medium demand, actuated control was slightly better.
+
+12
+00:01:00.996 --> 00:01:03.144
+The lesson is to measure, not assume.
+
+13
+00:01:03.144 --> 00:01:07.613
+The twin always reduced stops, but cut delay only when the corridor was busy.
+
+14
+00:01:07.613 --> 00:01:11.966
+Camera detection fell from eighty-four to fifty-six percent as queues grew.
+
+15
+00:01:11.966 --> 00:01:14.578
+Both sensing and decision logic limit a twin.
