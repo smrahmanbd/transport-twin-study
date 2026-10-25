@@ -1,0 +1,434 @@
+{
+ "8": {
+  "video_s": 75.4,
+  "audio_s": 78.5,
+  "slides": [
+   {
+    "img": "course/m08/slide01.jpg",
+    "title": "Simulation II",
+    "notes": "Module eight puts everything together. We connect a twin controller to SUMO, give it a camera, and measure what it achieves."
+   },
+   {
+    "img": "course/m08/slide02.jpg",
+    "title": "The loop, every second",
+    "notes": "Every simulated second the twin senses the road, estimates queues and arriving vehicles, decides whether to keep or end each green, and acts through TraCI. Then SUMO moves the traffic forward one step."
+   },
+   {
+    "img": "course/m08/slide03.jpg",
+    "title": "Watch the corridor",
+    "notes": "Here is the corridor at medium demand. Dots are vehicles, coloured by speed. The orange circles are the cameras' range at each junction. Watch the queues on the side streets form and clear as the twin switches the signals."
+   },
+   {
+    "img": "course/m08/slide04.jpg",
+    "title": "A camera is not perfect",
+    "notes": "The virtual camera has the flaws of real computer vision: limited range, missed detections that grow with distance, cars hidden behind other cars, position noise, and guessing which lane a car is in."
+   },
+   {
+    "img": "course/m08/slide05.jpg",
+    "title": "Held-out results",
+    "notes": "On five seeds the twin never saw, both twins beat SUMO's actuated signals at high demand, about ninety-five seconds of lost time per trip against one hundred and one. At low and medium demand, actuated control was slightly better."
+   },
+   {
+    "img": "course/m08/slide06.jpg",
+    "title": "What we learned",
+    "notes": "The lesson is to measure, not assume. The twin always reduced stops, but cut delay only when the corridor was busy. Camera detection fell from eighty-four to fifty-six percent as queues grew. Both sensing and decision logic limit a twin."
+   }
+  ]
+ },
+ "1": {
+  "video_s": 77.6,
+  "audio_s": 75.4,
+  "slides": [
+   {
+    "img": "course/m01/slide01.jpg",
+    "title": "Digital twin concepts",
+    "notes": "Welcome to module one. In the next two minutes we will define a digital twin, separate it from things that only look like one, and see why transport is both a natural fit and a hard case."
+   },
+   {
+    "img": "course/m01/slide02.jpg",
+    "title": "Three parts and a loop",
+    "notes": "A digital twin has three parts: a physical system, a virtual replica of it, and the connection between them. Data flows in from the road, and decisions flow back out. Without that two-way connection, you only have a model."
+   },
+   {
+    "img": "course/m01/slide03.jpg",
+    "title": "Model, shadow or twin?",
+    "notes": "Kritzinger and colleagues give a simple test. A model has no automatic data flow. A shadow receives live data, but people act on it by hand. Only when data flows automatically in both directions do we call it a twin."
+   },
+   {
+    "img": "course/m01/slide04.jpg",
+    "title": "Five questions a twin answers",
+    "notes": "A dashboard answers the first question. A full twin climbs all five: it monitors, diagnoses, predicts, tests options, and finally acts. Each step needs more trust in the data and the models."
+   },
+   {
+    "img": "course/m01/slide05.jpg",
+    "title": "Why transport is a hard case",
+    "notes": "Transport is harder than a factory. The system is open, full of human behaviour, spread across many owners, and its decisions run from a signal change in seconds to a new metro line over decades."
+   },
+   {
+    "img": "course/m01/slide06.jpg",
+    "title": "Start with the decision",
+    "notes": "So every good twin starts with one decision. The decision sets the clock, and the clock sets which data, which model detail, and which update speed you need. That is the thread for the rest of the course."
+   }
+  ]
+ },
+ "2": {
+  "video_s": 78.4,
+  "audio_s": 79.5,
+  "slides": [
+   {
+    "img": "course/m02/slide01.jpg",
+    "title": "Architecture",
+    "notes": "Module two is about architecture: how sensors, data, models and decisions fit together, and the design choices that make a twin fast, reliable and safe."
+   },
+   {
+    "img": "course/m02/slide02.jpg",
+    "title": "A cyber-physical system",
+    "notes": "A transport twin is a cyber-physical system. Computers and the physical road form one loop. That means timing and safety matter as much as model accuracy: a late decision can be as bad as a wrong one."
+   },
+   {
+    "img": "course/m02/slide03.jpg",
+    "title": "Layered architecture",
+    "notes": "Most twins can be drawn as layers: the physical system, sensing, a data platform, models, services that turn results into decisions, and interfaces for people. A feedback path runs from the services back to the physical layer."
+   },
+   {
+    "img": "course/m02/slide04.jpg",
+    "title": "Edge or cloud?",
+    "notes": "Where should computation run? Video analytics and safety logic belong at the edge, close to the camera and the signal. History, heavy simulation and city-wide analytics fit the cloud or a data centre. Most real twins use both."
+   },
+   {
+    "img": "course/m02/slide05.jpg",
+    "title": "Co-simulation and the digital thread",
+    "notes": "No single simulator does everything, so twins couple several, for example SUMO for traffic and CARLA for vehicles. The digital thread is the record that links design, construction and operating data for each asset."
+   },
+   {
+    "img": "course/m02/slide06.jpg",
+    "title": "Five design questions",
+    "notes": "Before choosing products, answer five questions: what is the purpose, how much fidelity is needed, how often must it update, how much delay is acceptable, and who owns each layer. The architecture follows from the answers."
+   }
+  ]
+ },
+ "3": {
+  "video_s": 80.1,
+  "audio_s": 77.2,
+  "slides": [
+   {
+    "img": "course/m03/slide01.jpg",
+    "title": "Static inputs",
+    "notes": "Module three covers static inputs: the geometry and structure of the network that a twin needs before any live data can make sense."
+   },
+   {
+    "img": "course/m03/slide02.jpg",
+    "title": "Ways to capture reality",
+    "notes": "Reality capture comes in two families. Laser scanning, from a tripod, a vehicle or an aircraft, measures millions of points directly. Photogrammetry rebuilds 3D shape from overlapping drone photos. Accuracy, cost and coverage decide which to use."
+   },
+   {
+    "img": "course/m03/slide03.jpg",
+    "title": "From points to a model",
+    "notes": "Raw point clouds are only the start. They are registered into one coordinate system, classified into road, kerb, vegetation and structures, and then features such as lane edges and signs are extracted into a network or a BIM model."
+   },
+   {
+    "img": "course/m03/slide04.jpg",
+    "title": "Network models need more than geometry",
+    "notes": "A traffic model needs more than geometry. It needs nodes, links, lanes and the turns allowed between them, the signal programmes, and the demand: how many trips travel between each pair of zones."
+   },
+   {
+    "img": "course/m03/slide05.jpg",
+    "title": "BIM, IFC 4.3 and CityGML",
+    "notes": "Open standards keep this data usable. IFC 4.3 extends building information modelling to roads, rail and bridges. CityGML describes city objects at different levels of detail. OpenDRIVE describes lane-level roads for driving simulators."
+   },
+   {
+    "img": "course/m03/slide06.jpg",
+    "title": "Rule of thumb",
+    "notes": "Capture is expensive, so plan it to serve many uses. Agree the coordinate system, the accuracy you need and the output formats before anyone goes on site."
+   }
+  ]
+ },
+ "4": {
+  "video_s": 83.2,
+  "audio_s": 78.0,
+  "slides": [
+   {
+    "img": "course/m04/slide01.jpg",
+    "title": "Dynamic inputs",
+    "notes": "Module four is about dynamic inputs: the sensors and data feeds that keep a twin in step with reality, and the standards that let systems share them."
+   },
+   {
+    "img": "course/m04/slide02.jpg",
+    "title": "Point or network?",
+    "notes": "Sensors fall into two groups. Point sensors, like loops, radar and cameras, are accurate but only see one place. Network sources, like probe GPS and bus locations, cover the whole city but only sample some of the vehicles."
+   },
+   {
+    "img": "course/m04/slide03.jpg",
+    "title": "Every source has a blind spot",
+    "notes": "Every source has a blind spot. Loops see one point. Cameras struggle with darkness, rain and hidden vehicles. Probe data is biased toward certain vehicles. Connected-vehicle messages are still rare. That is why twins fuse several sources."
+   },
+   {
+    "img": "course/m04/slide04.jpg",
+    "title": "Four dimensions of data quality",
+    "notes": "Judge every feed on four dimensions: completeness, accuracy, timeliness and consistency. A feed that is accurate but arrives five minutes late is useless for signal control, and perfectly fine for planning."
+   },
+   {
+    "img": "course/m04/slide05.jpg",
+    "title": "Standards for live data",
+    "notes": "Standards let systems share data without custom code. GTFS-Realtime and SIRI carry live public transport data. DATEX II carries road traffic information in Europe. SAE J2735 defines connected-vehicle messages. NGSI-LD is used by smart city platforms."
+   },
+   {
+    "img": "course/m04/slide06.jpg",
+    "title": "Fusion",
+    "notes": "The goal is fusion: combining sources so that each covers another's blind spot. A camera that sees the queue plus a loop that counts reliably gives a better picture than either alone."
+   }
+  ]
+ },
+ "5": {
+  "video_s": 76.3,
+  "audio_s": 80.3,
+  "slides": [
+   {
+    "img": "course/m05/slide01.jpg",
+    "title": "Data platforms",
+    "notes": "Module five looks at the data platform: how a twin moves, stores and shares data, and how it stays interoperable with other systems."
+   },
+   {
+    "img": "course/m05/slide02.jpg",
+    "title": "A typical data path",
+    "notes": "A typical path: sensors publish messages to a broker such as MQTT or Kafka, a stream processor cleans and aggregates them, results land in time-series and spatial databases, and APIs expose them to models and users."
+   },
+   {
+    "img": "course/m05/slide03.jpg",
+    "title": "Streaming or batch?",
+    "notes": "Streaming handles data as it arrives and keeps the live state. Batch processing runs over history, for calibration, learning and reports. Twins need both, connected but separated."
+   },
+   {
+    "img": "course/m05/slide04.jpg",
+    "title": "The right store for each job",
+    "notes": "Use the right store for each job: a time-series database for sensor history, a spatial database for networks and assets, a context broker or twin graph for the live state of each object, and cheap object storage for the raw archive."
+   },
+   {
+    "img": "course/m05/slide05.jpg",
+    "title": "Four levels of interoperability",
+    "notes": "Interoperability has four levels. Technical: can the systems connect. Syntactic: can they parse the format. Semantic: does a 'stop' or a 'link' mean the same thing to both. Organisational: are they allowed to share. Most projects fail at the last two."
+   },
+   {
+    "img": "course/m05/slide06.jpg",
+    "title": "Design for federation",
+    "notes": "Design for federation from the start. Keep ownership of your data, expose it through open APIs and shared vocabularies, and your twin can connect to neighbours' twins later without being rebuilt."
+   }
+  ]
+ },
+ "6": {
+  "video_s": 70.9,
+  "audio_s": 78.0,
+  "slides": [
+   {
+    "img": "course/m06/slide01.jpg",
+    "title": "Estimation and prediction",
+    "notes": "Module six turns sparse sensor data into a full picture of the network, now and in the near future."
+   },
+   {
+    "img": "course/m06/slide02.jpg",
+    "title": "Traffic state estimation",
+    "notes": "Traffic state estimation is like weather forecasting. A few detectors and probe vehicles give sparse observations. A flow model fills the gaps, and a filter, such as a Kalman filter, blends the two into speeds and densities on every link."
+   },
+   {
+    "img": "course/m06/slide03.jpg",
+    "title": "Two families of prediction",
+    "notes": "Prediction comes in two families. Model-based methods use flow physics and explain themselves, but need calibration. Data-driven methods, such as LSTMs and graph neural networks, learn patterns from history but need large clean datasets."
+   },
+   {
+    "img": "course/m06/slide04.jpg",
+    "title": "Hybrid and physics-informed",
+    "notes": "Hybrid and physics-informed approaches combine both: a network learns what the physical model gets wrong, or is trained to respect conservation of vehicles. They need less data and produce fewer impossible answers."
+   },
+   {
+    "img": "course/m06/slide05.jpg",
+    "title": "Evaluate honestly",
+    "notes": "Evaluate honestly. Report errors by forecast horizon, always compare with simple baselines such as yesterday at the same time, and test on incidents and on months the model never saw."
+   },
+   {
+    "img": "course/m06/slide06.jpg",
+    "title": "Remember",
+    "notes": "And remember: a forecast is only useful if it arrives in time. The prediction horizon must be longer than the time it takes to compute it and act on it."
+   }
+  ]
+ },
+ "7": {
+  "video_s": 73.2,
+  "audio_s": 76.5,
+  "slides": [
+   {
+    "img": "course/m07/slide01.jpg",
+    "title": "Simulation I",
+    "notes": "Module seven builds the engine of the twin: a traffic simulation that is calibrated and validated well enough to be trusted."
+   },
+   {
+    "img": "course/m07/slide02.jpg",
+    "title": "Choose the zoom level",
+    "notes": "First choose the zoom level. Macroscopic and mesoscopic models move flows or platoons and suit whole regions. Microscopic models simulate every driver and suit corridors, junctions and signals, at the price of speed and data."
+   },
+   {
+    "img": "course/m07/slide03.jpg",
+    "title": "Inside a microscopic model",
+    "notes": "Inside a microscopic model, car-following rules decide how drivers keep their distance. SUMO's default is the Krauss model, Vissim uses Wiedemann. Lane-changing and route choice complete the picture."
+   },
+   {
+    "img": "course/m07/slide04.jpg",
+    "title": "Building in SUMO",
+    "notes": "In SUMO the workflow is: build the network with netconvert, generate demand and routes, add detectors, run sumo or sumo-gui, and read the outputs such as trip information and detector counts."
+   },
+   {
+    "img": "course/m07/slide05.jpg",
+    "title": "Calibrate, then validate",
+    "notes": "Calibration adjusts demand and parameters until the model matches counts. A common target is GEH below five on at least eighty-five percent of counted links. Then validate on different days, and check travel times too."
+   },
+   {
+    "img": "course/m07/slide06.jpg",
+    "title": "One run is not a result",
+    "notes": "Finally, one run is not a result. Simulations are random. Run several seeds, report the mean and the range, and never tune and test on the same seed. In the SUMO lab you will see what happens when you do."
+   }
+  ]
+ },
+ "9": {
+  "video_s": 76.3,
+  "audio_s": 75.3,
+  "slides": [
+   {
+    "img": "course/m09/slide01.jpg",
+    "title": "Asset twins",
+    "notes": "Module nine moves from traffic to the infrastructure itself: twins of pavements, bridges and tunnels that help decide when to inspect and repair."
+   },
+   {
+    "img": "course/m09/slide02.jpg",
+    "title": "An asset twin",
+    "notes": "An asset twin combines geometry from surveys and BIM, data from sensors and inspections, and a condition history. A deterioration model predicts the future condition, and the twin turns that into work orders."
+   },
+   {
+    "img": "course/m09/slide03.jpg",
+    "title": "Measuring condition",
+    "notes": "Pavement condition is measured as roughness, cracking and rutting. Bridges are monitored with strain gauges, accelerometers and inspections. Drones and computer vision now find cracks faster than walking inspections."
+   },
+   {
+    "img": "course/m09/slide04.jpg",
+    "title": "Predicting deterioration",
+    "notes": "To predict deterioration, network-level twins use statistical and Markov models. Pavement design uses mechanistic models. For a critical bridge, a finite-element model can be updated with measured vibrations to track its stiffness."
+   },
+   {
+    "img": "course/m09/slide05.jpg",
+    "title": "Decisions",
+    "notes": "Without a twin, agencies inspect on fixed cycles and repair when damage is visible. With a twin, inspection is risk-based and repair can be timed at the lowest lifecycle cost, before expensive failure."
+   },
+   {
+    "img": "course/m09/slide06.jpg",
+    "title": "Key standard",
+    "notes": "The asset management standard ISO 55000 frames all of this: decisions about assets should be linked to value, risk and cost over the whole lifecycle. The twin provides the evidence."
+   }
+  ]
+ },
+ "10": {
+  "video_s": 59.8,
+  "audio_s": 71.9,
+  "slides": [
+   {
+    "img": "course/m10/slide01.jpg",
+    "title": "Freight twins",
+    "notes": "Module ten looks at urban freight, where on-demand delivery is putting new pressure on streets and curbs."
+   },
+   {
+    "img": "course/m10/slide02.jpg",
+    "title": "The last-mile problem",
+    "notes": "The last mile is the hardest part of logistics: many small, time-critical deliveries, vans double-parked in traffic lanes, and emissions and noise concentrated in dense neighbourhoods."
+   },
+   {
+    "img": "course/m10/slide03.jpg",
+    "title": "A freight twin",
+    "notes": "A freight twin combines fleet positions, loading-bay occupancy and delivery demand by area. Routing optimisation and traffic simulation then test policies and support dispatch."
+   },
+   {
+    "img": "course/m10/slide04.jpg",
+    "title": "Policies to test",
+    "notes": "Typical policies to test are more or smarter loading zones, bookable curb space, micro-hubs served by cargo bikes, delivery time windows and low-emission zones."
+   },
+   {
+    "img": "course/m10/slide05.jpg",
+    "title": "Living labs: the LEAD project",
+    "notes": "The European LEAD project built digital twins for on-demand urban logistics with living labs in six cities, and shared its open tools in a free online course that this module draws on."
+   },
+   {
+    "img": "course/m10/slide06.jpg",
+    "title": "Measure the whole street",
+    "notes": "A good freight twin measures both sides: delivery time and cost for operators, and the impact on everyone else on the street, from bus delays to emissions."
+   }
+  ]
+ },
+ "11": {
+  "video_s": 66.7,
+  "audio_s": 75.2,
+  "slides": [
+   {
+    "img": "course/m11/slide01.jpg",
+    "title": "City twins",
+    "notes": "Module eleven widens the view to the city: emissions and air quality, city-scale twins, and the interfaces that turn twin outputs into decisions."
+   },
+   {
+    "img": "course/m11/slide02.jpg",
+    "title": "From traffic to air quality",
+    "notes": "A traffic twin can estimate environmental impact. Speeds and vehicle mixes feed an emission model, a dispersion model spreads pollutants through the streets, and exposure shows who breathes them."
+   },
+   {
+    "img": "course/m11/slide03.jpg",
+    "title": "Emission models",
+    "notes": "Emission factors come from models such as HBEFA and COPERT in Europe and MOVES in the United States. SUMO includes emission classes based on HBEFA. Always compare with air-quality monitors."
+   },
+   {
+    "img": "course/m11/slide04.jpg",
+    "title": "City-scale twins",
+    "notes": "City-scale twins combine 3D city models with live data from many sectors. Open platforms such as FIWARE and Snap4City, and cloud twin services, host them. Singapore and Helsinki are often cited examples."
+   },
+   {
+    "img": "course/m11/slide05.jpg",
+    "title": "Interfaces for decisions",
+    "notes": "Interfaces decide whether a twin is used. Put the summary first and the detail on demand, show uncertainty, and always explain why the twin recommends an action."
+   },
+   {
+    "img": "course/m11/slide06.jpg",
+    "title": "Remember",
+    "notes": "A twin that nobody uses is just a model. Design its interfaces for each audience: the operator in the control room, the planner, and the public."
+   }
+  ]
+ },
+ "12": {
+  "video_s": 77.8,
+  "audio_s": 79.6,
+  "slides": [
+   {
+    "img": "course/m12/slide01.jpg",
+    "title": "From pilot to service",
+    "notes": "The final module is about making a twin real: keeping it safe, secure and lawful, rolling it out step by step, and knowing where research still has open questions."
+   },
+   {
+    "img": "course/m12/slide02.jpg",
+    "title": "Safety and security",
+    "notes": "Safety comes from a shell around the twin: the signal controller keeps enforcing minimum greens, yellows and fallback plans. Cyber security follows standards such as IEC 62443 and the NIST framework. Privacy follows laws such as GDPR or Saudi Arabia's PDPL."
+   },
+   {
+    "img": "course/m12/slide03.jpg",
+    "title": "Rollout",
+    "notes": "Roll out in steps: one use case, a data audit, a shadow with trusted live data, a validated model, a human in the loop, then closing the loop for low-risk actions, and finally scaling."
+   },
+   {
+    "img": "course/m12/slide04.jpg",
+    "title": "Governance",
+    "notes": "Governance answers who owns the data and the decisions, who is accountable if an automated action goes wrong, and who will have the skills to run the twin after the pilot team leaves."
+   },
+   {
+    "img": "course/m12/slide05.jpg",
+    "title": "Open research gaps",
+    "notes": "Research gaps remain. Few studies prove the value of closing the loop. Data fusion, uncertainty and trust are open problems, as are federating twins across agencies and modelling human behaviour, especially of pedestrians and cyclists."
+   },
+   {
+    "img": "course/m12/slide06.jpg",
+    "title": "A good research question",
+    "notes": "To finish: a good research question names the decision, the gap and the evidence. And whatever you build, test it on data you did not tune on. Thank you for completing the course."
+   }
+  ]
+ }
+}
