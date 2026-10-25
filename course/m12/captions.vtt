@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:09.284
+The final module is about making a twin real: keeping it safe, secure and lawful, rolling it out step by step, and knowing where research still has open questions.
+
+2
+00:00:10.184 --> 00:00:19.048
+Safety comes from a shell around the twin: the signal controller keeps enforcing minimum greens, yellows and fallback plans.
+
+3
+00:00:19.048 --> 00:00:24.338
+Cyber security follows standards such as IEC 62443 and the NIST framework.
+
+4
+00:00:24.338 --> 00:00:28.412
+Privacy follows laws such as GDPR or Saudi Arabia's PDPL.
+
+5
+00:00:29.312 --> 00:00:40.768
+Roll out in steps: one use case, a data audit, a shadow with trusted live data, a validated model, a human in the loop, then closing the loop for low-risk actions, and finally scaling.
+
+6
+00:00:41.668 --> 00:00:50.660
+Governance answers who owns the data and the decisions, who is accountable if an automated action goes wrong, and who will have the skills to run the twin after the pilot team leaves.
+
+7
+00:00:51.560 --> 00:00:52.844
+Research gaps remain.
+
+8
+00:00:52.844 --> 00:00:55.778
+Few studies prove the value of closing the loop.
+
+9
+00:00:55.778 --> 00:01:05.804
+Data fusion, uncertainty and trust are open problems, as are federating twins across agencies and modelling human behaviour, especially of pedestrians and cyclists.
+
+10
+00:01:06.704 --> 00:01:11.407
+To finish: a good research question names the decision, the gap and the evidence.
+
+11
+00:01:11.407 --> 00:01:14.890
+And whatever you build, test it on data you did not tune on.
+
+12
+00:01:14.890 --> 00:01:16.980
+Thank you for completing the course.
